@@ -1,0 +1,33 @@
+body {
+}
+p {
+  font-weight: bold;
+}
+form {
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  font-family: monospace;
+}
+label {
+  display: block;
+}
+input {
+  text-transform: uppercase;
+}
+input[type="text"] {
+  font-weight: bold;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 9px 15px;
+  margin: 0;
+}
+select {
+  margin: 0;
+  padding: 9px 15px;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}

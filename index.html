@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Mathe!</title>
-    <style media="screen">
-      li {
-        font-family: monospace;
-      }
-      input {
-        text-transform: uppercase;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Understanding bases</h1>
-      <hr />
-      <form class="number-converter" onsubmit="return false;" action="" method="">
-        <h2>Base converter</h2>
-        <label for="number">Enter a number: </label>
-        <input type="text" name="number" autofocus="" placeholder="0" id="number">
-        <select id="base" name="base">
-          <option value="2">Base 2</option>
-          <option value="3">Base 3</option>
-          <option value="4">Base 4</option>
-          <option value="5">Base 5</option>
-          <option value="6">Base 6</option>
-          <option value="7">Base 7</option>
-          <option value="8">Base 8</option>
-          <option value="9">Base 9</option>
-          <option value="10" selected="">Base 10</option>
-          <option value="11">Base 11</option>
-          <option value="12">Base 12</option>
-          <option value="13">Base 13</option>
-          <option value="14">Base 14</option>
-          <option value="15">Base 15</option>
-          <option value="16">Base 16</option>
-          <option value="17">Base 17</option>
-          <option value="18">Base 18</option>
-          <option value="19">Base 19</option>
-          <option value="20">Base 20</option>
-          <option value="21">Base 21</option>
-          <option value="22">Base 22</option>
-          <option value="23">Base 23</option>
-          <option value="24">Base 24</option>
-          <option value="25">Base 25</option>
-          <option value="26">Base 26</option>
-          <option value="27">Base 27</option>
-          <option value="28">Base 28</option>
-          <option value="29">Base 29</option>
-          <option value="30">Base 30</option>
-          <option value="31">Base 31</option>
-          <option value="32">Base 32</option>
-          <option value="33">Base 33</option>
-          <option value="34">Base 34</option>
-          <option value="35">Base 35</option>
-          <option value="36">Base 36</option>
-        </select>
-      </form>
-      <ul>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-          <li class="result"></li>
-      </ul>
 
-    </header>
+<head>
+  <meta charset="utf-8">
+  <title>Understanding_Bases</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+</head>
 
-    <script type="text/javascript" src="/main.js">
+<body>
+  <header>
+    <h1>Understanding_Bases</h1>
+    <p>Chasing down the problem of the numeral system.</p>
+    <hr />
+  </header>
+  <main>
+    <h2>Base converter</h2>
+    <form class="number-converter" onsubmit="return false;" action="" method="">
+      <label for="number">Enter a number: </label>
+      <input type="text" name="number" autofocus="" placeholder="0" id="number">
+      <select id="base" name="base">
+            <option value="2">Base 2</option>
+            <option value="3">Base 3</option>
+            <option value="4">Base 4</option>
+            <option value="5">Base 5</option>
+            <option value="6">Base 6</option>
+            <option value="7">Base 7</option>
+            <option value="8">Base 8</option>
+            <option value="9">Base 9</option>
+            <option value="10" selected="">Base 10</option>
+            <option value="11">Base 11</option>
+            <option value="12">Base 12</option>
+            <option value="13">Base 13</option>
+            <option value="14">Base 14</option>
+            <option value="15">Base 15</option>
+            <option value="16">Base 16</option>
+            <option value="17">Base 17</option>
+            <option value="18">Base 18</option>
+            <option value="19">Base 19</option>
+            <option value="20">Base 20</option>
+            <option value="21">Base 21</option>
+            <option value="22">Base 22</option>
+            <option value="23">Base 23</option>
+            <option value="24">Base 24</option>
+            <option value="25">Base 25</option>
+            <option value="26">Base 26</option>
+            <option value="27">Base 27</option>
+            <option value="28">Base 28</option>
+            <option value="29">Base 29</option>
+            <option value="30">Base 30</option>
+            <option value="31">Base 31</option>
+            <option value="32">Base 32</option>
+            <option value="33">Base 33</option>
+            <option value="34">Base 34</option>
+            <option value="35">Base 35</option>
+            <option value="36">Base 36</option>
+          </select>
+    </form>
+    <ul>
+      <li>Base 2: <span class="result"></span></li>
+      <li>Base 3: <span class="result"></span></li>
+      <li>Base 4: <span class="result"></span></li>
+      <li>Base 5: <span class="result"></span></li>
+      <li>Base 6: <span class="result"></span></li>
+      <li>Base 7: <span class="result"></span></li>
+      <li>Base 8: <span class="result"></span></li>
+      <li>Base 9: <span class="result"></span></li>
+      <li>Base 10: <span class="result"></span></li>
+      <li>Base 11: <span class="result"></span></li>
+      <li>Base 12: <span class="result"></span></li>
+      <li>Base 13: <span class="result"></span></li>
+      <li>Base 14: <span class="result"></span></li>
+      <li>Base 15: <span class="result"></span></li>
+      <li>Base 16: <span class="result"></span></li>
+    </ul>
+  </main>
 
-    </script>
-  </body>
+  <script type="text/javascript" src="/main.js">
+  </script>
+</body>
+
 </html>

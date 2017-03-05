@@ -4,10 +4,11 @@ var addedCharacter = "";
 var totallyLegitGlobalBaseVariable = 10;
 var elem = document.getElementById('number');
 var base = document.getElementById('base');
-
+document.onload = base.value = 10;
 base.addEventListener("change", function updateBase(e) {
     totallyLegitGlobalBaseVariable = this.value;
     elem.value = "";
+    elem.placeholder = "Use digits 0-" + getDigitCharacter(totallyLegitGlobalBaseVariable-1);
 });
 elem.addEventListener("paste", function paste(e) {
     e.preventDefault();
