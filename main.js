@@ -1,20 +1,21 @@
 var ergebnis = '';
 var addedCharacter = "";
 
-var totallyLegitGlobalBaseVariable = 10;
+var isComma = false;
+var selectedBase = 10;
 var elem = document.getElementById('number');
 var base = document.getElementById('base');
 document.onload = base.value = 10;
 base.addEventListener("change", function updateBase(e) {
-    totallyLegitGlobalBaseVariable = this.value;
+    selectedBase = this.value;
     elem.value = "";
-    elem.placeholder = "Use digits 0-" + getDigitCharacter(totallyLegitGlobalBaseVariable-1);
+    elem.placeholder = "Use digits 0-" + getDigitCharacter(selectedBase - 1);
 });
 elem.addEventListener("paste", function paste(e) {
     e.preventDefault();
     var pastedData = e.clipboardData.getData('text');
 
-    if (validateNumber(pastedData, totallyLegitGlobalBaseVariable) != -1) {
+    if (validateNumber(pastedData, selectedBase) != -1) {
         this.value = this.value + pastedData;
     } else {
         console.error("The pasted data does not match with the selected base!");
@@ -30,21 +31,22 @@ elem.addEventListener("keypress", function char(e) {
     }
 });
 elem.addEventListener("input", function calculate(e) {
-    e.preventDefault(); // Does not work :()
+    e.preventDefault(); // Does not work :(
     e.stopPropagation();
-    // NOTE: In future it is possible to use InputEvent.data to get the added character
+    // NOTE: In future it is possible to use InputEvent.data to get the added character, so it would not be necessary to use an keypress eventlistener
     let digit = addedCharacter;
+    console.log("addedCharacter: " + addedCharacter);
 
-    if (validateNumber(digit, totallyLegitGlobalBaseVariable) != -1) {
+    if (validateNumber(digit, selectedBase) != -1) {
         /* Convert and insert the values*/
+        var baseTen = toBaseTen(this.value, selectedBase);
         for (var i = 2; i <= 16; i++) {
             let sum = 0;
 
-            if (totallyLegitGlobalBaseVariable == 10) {
+            if (selectedBase == 10) {
                 sum = fromBaseTen(this.value, i);
             } else {
-                sum = toBaseTen(this.value, totallyLegitGlobalBaseVariable);
-                sum = fromBaseTen(sum, i);
+                sum = fromBaseTen(baseTen, i);
             }
 
             document.getElementsByClassName('result')[i - 2].innerHTML = sum;
@@ -64,23 +66,37 @@ It then chops the received number apart and multiplies the value of the digit wi
 function toBaseTen(number, base) {
     var digits = [],
         sum = 0;
+    var split = number.split(",");
 
-    digits = number.toString().split('');
-
-    for (var i = 0; i < digits.length; i++) {
-        sum += getDigitValue(digits[digits.length - i-1]) * Math.pow(base, i);
+    for (var i = 0; i < split[0].length; i++) {
+        sum += getDigitValue(split[0][i]) * Math.pow(base, split[0].length - 1 - i);
     }
 
-    return sum;
+    if (split[1]) {
+        sum += ',';
+        var temp = 0;
+        for (var i = 0; i < split[1].length; i++) {
+            temp += getDigitValue(split[1][i]) * Math.pow(base, -(i + 1));
+        }
+        sum += temp.toString().substring(2);
+    }
+
+    return sum.toString();
 }
 
 function fromBaseTen(number, base) {
     var potenzen = [],
-        rest = number,
+        rest = '',
         ergebnis = '';
 
-    potenzen = _makePowers(number, base);
+    console.log("number: " + number);
+    var split = number.toString().split(","),
+        digits = number.toString().split('');
 
+    potenzen = _makePowers(split[0], base);
+
+    // If given number is a number with a comma then loop loop twice. One time for 'body' and one time for the 'comma'
+    rest = split[0];
     for (var i = potenzen.length - 1; i >= 0; i--) {
         if (rest == 0 || (rest - potenzen[i] < 0)) {
             ergebnis += '0';
@@ -90,6 +106,22 @@ function fromBaseTen(number, base) {
             rest = rest % potenzen[i];
         }
     }
+
+    // calculates the comma
+    if (split[1]) {
+        ergebnis += ","
+        rest = Number('0.' + split[1]);
+        for (var i = 1; i <= 8; i++) {
+            if (rest == 0 || (rest - Math.pow(base, -i) < 0)) {
+                ergebnis += '0';
+            } else {
+                help = Math.floor(rest / Math.pow(base, -i));
+                ergebnis += getDigitCharacter(help).toString();
+                rest = rest % Math.pow(base, -i);
+            }
+        }
+    }
+
 
     // Rechnet die nötigen Potenzen der Basis, welche für die Umrechnung von nöten sind aus.
     function _makePowers(number, base) {
@@ -124,17 +156,26 @@ function getDigitValue(digit) {
 
 function validateNumber(number, base) {
     if (number == -1) {
-        return 0;
+        if (elem.value.indexOf(",") == -1) {
+            isComma = false;
+        }
+        return false;
     }
-    var digits = number.split("");
 
+    var digits = number.split("");
     for (var i = 0; i < digits.length; i++) {
-      console.log(digits);
-        let digitValue = getDigitValue(digits[i]);
-        if (digitValue >= totallyLegitGlobalBaseVariable || digitValue == -1) {
+        if (digits[i] == "," && isComma == false) {
+            isComma = true;
+            return true;
+        } else if (digits[i] == "," && isComma == true) {
             return -1;
-        } else {
-            return number;
+        }
+
+        let digitValue = getDigitValue(digits[i]);
+
+        if (digitValue >= selectedBase || digitValue == -1) {
+            return -1;
         }
     }
+    return number;
 }
