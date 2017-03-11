@@ -49,7 +49,7 @@ elem.addEventListener("input", function calculate(e) {
                 sum = fromBaseTen(baseTen, i);
             }
 
-            document.getElementsByClassName('result')[i - 2].innerHTML = sum;
+            document.getElementsByClassName('result-number')[i - 2].innerHTML = sum;
         }
     } else {
         var v = this.value.split("");

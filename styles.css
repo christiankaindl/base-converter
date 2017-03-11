@@ -1,33 +1,110 @@
 body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-p {
-  font-weight: bold;
+
+p {}
+
+h1 {
+    height: 48px;
+    margin: 8px;
+    color: white;
 }
-form {
-}
+
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
+
 li {
-  font-family: monospace;
+    font-family: mono;
 }
+
 label {
-  display: block;
+    display: block;
 }
-input {
+
+form {
+    padding: 30px;
+    border: 3px solid #70709e;
+    border-radius: 30px;
+}
+form label {
   text-transform: uppercase;
 }
-input[type="text"] {
-  font-weight: bold;
-  border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 9px 15px;
-  margin: 0;
+
+input, select {
+    text-transform: uppercase;
+    margin: 0;
+    padding: 9px 15px;
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+    color: #313173;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: mono;
 }
-select {
-  margin: 0;
-  padding: 9px 15px;
-  border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.results li {
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 15px;
+  /*padding: 15px;*/
+  background-color: #70709e;
+  color: white;
+}
+.result-base {
+  border-radius: 20px 0 0 20px;
+  background-color: #313173;
+  display: inline-block;
+  padding: 15px;
+  width: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+.result-number {
+  width: calc(100% - 84px);
+  overflow-x: auto;
+  float: right;
+  padding: 15px;
+}
+header {
+    height: 64px;
+}
+
+.header-wrapper {
+    display: inline-block;
+    background-color: #313173;
+    width: calc(100% - 78px);
+    margin-left: 14px;
+    float: right;
+}
+
+@media screen and (min-width: 900px) {
+    .wrapper {
+        width: 80vmin;
+        margin: auto;
+    }
+    header .wrapper {
+        text-align: center;
+    }
+    form {
+        width: 70%;
+    }
+    .number {
+        width: 70%;
+    }
+    .base {
+        39%;
+    }
+}
+
+h2 {
+    text-align: center;
+}
+
+.number, .base {
+    width: 100%;
+    margin: 1em;
 }
