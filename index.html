@@ -22,7 +22,7 @@
       <form class="number-converter" onsubmit="return false;" action="" method="">
         <div class="number">
           <label for="number">Enter a number</label>
-          <input type="text" name="number" autofocus="" placeholder="use digits 0-9" id="number">
+          <input class="input-number" type="text" name="number" autofocus="" placeholder="use digits 0-9" id="number">
         </div>
 
         <div class="base">
@@ -66,24 +66,42 @@
               </select>
         </div>
       </form>
-      
+
       <ul class="results">
-        <li><div class="result-base">2</div><div class="result-number"></div></li>
-        <li><div class="result-base">3</div><div class="result-number"></div></li>
-        <li><div class="result-base">4</div><div class="result-number"></div></li>
-        <li><div class="result-base">5</div><div class="result-number"></div></li>
-        <li><div class="result-base">6</div><div class="result-number"></div></li>
-        <li><div class="result-base">7</div><div class="result-number"></div></li>
-        <li><div class="result-base">8</div><div class="result-number"></div></li>
-        <li><div class="result-base">9</div><div class="result-number"></div></li>
-        <li><div class="result-base">10</div><div class="result-number"></div></li>
-        <li><div class="result-base">11</div><div class="result-number"></div></li>
-        <li><div class="result-base">12</div><div class="result-number"></div></li>
-        <li><div class="result-base">13</div><div class="result-number"></div></li>
-        <li><div class="result-base">14</div><div class="result-number"></div></li>
-        <li><div class="result-base">15</div><div class="result-number"></div></li>
-        <li><div class="result-base">16</div><div class="result-number"></div></li>
+        <li class="">
+          <div class="edit-mode done-button" onclick="leaveEditMode(this)">
+            <img src="done.svg"></div>
+          <div class="edit-mode delete-button" onclick="removeResultBox(this)">
+            <img src="delete.svg"></div>
+          <input class="result-base" value="2" onfocus="toggleEditMode(this);" type="text">
+          <div class="result-number"></div>
+        </li>
+        <li class="">
+          <div class="edit-mode done-button" onclick="leaveEditMode(this)">
+            <img src="done.svg"></div>
+          <div class="edit-mode delete-button" onclick="removeResultBox(this)">
+            <img src="delete.svg"></div>
+          <input class="result-base" value="8" onfocus="toggleEditMode(this);" type="text">
+          <div class="result-number"></div>
+        </li>
+        <li class="">
+          <div class="edit-mode done-button" onclick="leaveEditMode(this)">
+            <img src="done.svg"></div>
+          <div class="edit-mode delete-button" onclick="removeResultBox(this)">
+            <img src="delete.svg"></div>
+          <input class="result-base" value="12" onfocus="toggleEditMode(this);" type="text">
+          <div class="result-number"></div>
+        </li>
+        <li class="">
+          <div class="edit-mode done-button" onclick="leaveEditMode(this)">
+            <img src="done.svg"></div>
+          <div class="edit-mode delete-button" onclick="removeResultBox(this)">
+            <img src="delete.svg"></div>
+          <input class="result-base" value="16" onfocus="toggleEditMode(this);" type="text">
+          <div class="result-number"></div>
+        </li>
       </ul>
+      <button type="button" id="add-base" class="add-button"> + Add Base</button>
     </div>
 
   </main>

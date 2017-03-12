@@ -5,7 +5,10 @@ var isComma = false;
 var selectedBase = 10;
 var elem = document.getElementById('number');
 var base = document.getElementById('base');
+var addBaseButton = document.getElementById('add-base');
 document.onload = base.value = 10;
+
+addBaseButton.addEventListener("click", addResultBox);
 base.addEventListener("change", function updateBase(e) {
     selectedBase = this.value;
     elem.value = "";
@@ -40,16 +43,21 @@ elem.addEventListener("input", function calculate(e) {
     if (validateNumber(digit, selectedBase) != -1) {
         /* Convert and insert the values*/
         var baseTen = toBaseTen(this.value, selectedBase);
-        for (var i = 2; i <= 16; i++) {
-            let sum = 0;
+        var resultBase = document.getElementsByClassName('result-base');
+
+        console.log(resultBase[0].value);
+        for (var i = 0; i < resultBase.length; i++) {
+            let sum = 0,
+                curr = resultBase[i].value;
+            console.log(curr);
 
             if (selectedBase == 10) {
-                sum = fromBaseTen(this.value, i);
+                sum = fromBaseTen(this.value, curr);
             } else {
-                sum = fromBaseTen(baseTen, i);
+                sum = fromBaseTen(baseTen, curr);
             }
 
-            document.getElementsByClassName('result-number')[i - 2].innerHTML = sum;
+            document.getElementsByClassName('result-number')[i].innerHTML = sum;
         }
     } else {
         var v = this.value.split("");
@@ -58,6 +66,73 @@ elem.addEventListener("input", function calculate(e) {
     }
 });
 
+function enterEditMode(elem) {
+    if (elem.parentNode.className !== "expanded") {
+        elem.parentNode.className = "expanded";
+    }
+}
+
+function leaveEditMode(elem) {
+    if (elem.parentNode.className == "expanded") {
+        elem.parentNode.className = "";
+    }
+}
+
+function toggleEditMode(elem) {
+    console.log(elem);
+    if (elem.parentNode.className == 'expanded') {
+        elem.parentNode.className = "";
+        elem.blur();
+    } else {
+        elem.parentNode.setAttribute('class', 'expanded');
+        elem.select();
+    }
+}
+
+function removeResultBox(elem) {
+    elem.parentNode.parentNode.removeChild(elem.parentNode);
+}
+
+function addResultBox(e) {
+    var newListItem = document.createElement('LI');
+    var baseValue = "5";
+    var baseElement = document.createElement('INPUT');
+    var textElement = document.createElement('DIV');
+    var doneButton = document.createElement('DIV');
+    var deleteButton = document.createElement('DIV');
+    var doneImage = document.createElement('IMG');
+    var deleteImage = document.createElement('IMG');
+
+    deleteImage.setAttribute('src', 'delete.svg');
+    doneImage.setAttribute('src', 'done.svg');
+
+    doneButton.appendChild(doneImage);
+    deleteButton.appendChild(deleteImage);
+    doneButton.setAttribute('class', 'edit-mode done-button');
+    deleteButton.setAttribute('class', 'edit-mode delete-button');
+    doneButton.setAttribute('onclick', 'leaveEditMode(this);');
+    deleteButton.setAttribute('onclick', 'removeResultBox(this);');
+
+
+    baseElement.setAttribute('class', 'result-base');
+    baseElement.setAttribute('type', 'text');
+    baseElement.setAttribute('value', '--');
+    baseElement.setAttribute('onfocus', 'toggleEditMode(this);')
+    textElement.setAttribute('class', 'result-number');
+
+    baseElement.innerHTML = baseValue;
+    textElement.innerHTML = "";
+
+    newListItem.appendChild(doneButton);
+    newListItem.appendChild(deleteButton);
+    newListItem.appendChild(baseElement);
+    newListItem.appendChild(textElement);
+
+    console.log(newListItem);
+    document.getElementsByClassName('results')[0].appendChild(newListItem);
+
+    baseElement.select();
+}
 
 /**
 This function receives a number and the base from which the number comes from.
