@@ -80,6 +80,7 @@ input {
   text-align: center;
   font-weight: bold;
   z-index: 5;
+  cursor: pointer;
 }
 
 .add-button {
@@ -122,9 +123,11 @@ input {
 
 li.expanded .edit-mode {
   transform: translateX(-138px);
+  box-shadow: 0 1px 2px 0 #848484;
 }
 li.expanded .result-base {
   text-decoration: underline;
+  cursor: auto;
 }
 
 li.expanded {
