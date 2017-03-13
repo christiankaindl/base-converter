@@ -86,11 +86,13 @@ input {
   font-size: 16px;
   font-weight: bold;
   background-color: #70709e;
-  background-image: linear-gradient(to bottom, #000052, #21217280);
+  background-image: linear-gradient(to bottom, #494996, #6b6ba9);
   padding: 15px;
   margin: 15px;
   border-radius: 20px;
+  border-width: 2px;
   color: white;
+  /*border-image: linear-gradient(to top, #494996, #6b6ba9);*/
 }
 
 .edit-mode {
@@ -106,19 +108,27 @@ input {
 .done-button {
   left: 69px;
   background-color: #2fce2e;
+  background-image: linear-gradient(to bottom, #2fce2e, #5fee5e);
 }
 
 .delete-button {
   left: 0;
   background-color: #cf7070;
+  background-image: linear-gradient(to bottom, #cf7070, #ef9090);
+}
+.done-button, .delete-button {
+  cursor: pointer;
 }
 
 li.expanded .edit-mode {
   transform: translateX(-138px);
 }
+li.expanded .result-base {
+  text-decoration: underline;
+}
 
 li.expanded {
-  width: calc(100% - 138px);
+  /*width: calc(100% - 138px);*/
   transform: translateX(138px);
 }
 
