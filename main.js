@@ -9,9 +9,26 @@ var addBaseButton = document.getElementById('add-base');
 document.onload = base.value = 10;
 
 addBaseButton.addEventListener("click", addResultBox);
+
 base.addEventListener("change", function updateBase(e) {
+    if (elem.value != "") {
+      console.log('HERE');
+        if (selectedBase == 10) {
+          console.log('HERE TOO');
+            sum = fromBaseTen(elem.value, this.value);
+            console.log(sum);
+        } else {
+            let help = toBaseTen(elem.value, selectedBase);
+            sum = fromBaseTen(help, this.value);
+        }
+        elem.value = sum;
+    } else {
+        elem.value = "";
+    }
+
+    // Update to new Base
     selectedBase = this.value;
-    elem.value = "";
+
     elem.placeholder = "Use digits 0-" + getDigitCharacter(selectedBase - 1);
 });
 elem.addEventListener("paste", function paste(e) {
