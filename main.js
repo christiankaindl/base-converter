@@ -28,25 +28,24 @@ inputField.addEventListener("keypress", keyInput);
 inputField.addEventListener("input", inputHandler);
 
 function keyInput(e) {
-    if (e.charCode == 0) {
-        addedCharacter = -1;
-    } else {
-        addedCharacter = String.fromCharCode(e.charCode);
+    var addedCharacter = (e.charCode == 0) ? '-1' : String.fromCharCode(e.charCode);
+
+    if (!e.ctrlKey) {
+        if (!BaseConverter.validateNumber(addedCharacter)) {
+            console.error("Character not allowed. Use digits 0-" + (selectedBase - 1));
+            e.preventDefault();
+        }
     }
 }
 
+// NOTE: keyInput() does get triggered before inputHandler()
 function inputHandler(e) {
-    let digit = addedCharacter;
     // create results
     let results = BaseConverter.convert(selectedBase, resultBoxBase, this.value);
 
     // add results to the page
-    if (results == false) {
-        console.error("Character not allowed. Use digits 0-"+ (selectedBase-1));
-    } else {
-        for (var i = 0; i < resultBox.length; i++) {
-            resultBox[i].innerHTML = results[i];
-        }
+    for (var i = 0; i < resultBox.length; i++) {
+        resultBox[i].innerHTML = results[i];
     }
 }
 

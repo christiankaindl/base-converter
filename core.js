@@ -58,7 +58,7 @@ BaseConverter.convert = function(from, to, number) {
 
         // If given number is a number with a comma then loop loop twice. One time for 'body' and one time for the 'comma'
         rest = split[0];
-        for (var i = (potenzen.length-1); i >= 0; i--) {
+        for (var i = (potenzen.length - 1); i >= 0; i--) {
             if (rest == 0 || (rest - potenzen[i] < 0)) {
                 ergebnis += '0';
             } else {
@@ -115,7 +115,7 @@ BaseConverter.validateNumber = function(number, base) {
     var digits = number.split("");
 
     // When the backspace key is pressed...
-    if (number == -1) {
+    if (number == '-1') {
         // ...test if comma was deleted
         if (inputField.value.indexOf(",") == -1) {
             isComma = false;
