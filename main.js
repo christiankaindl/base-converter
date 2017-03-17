@@ -60,13 +60,11 @@ function updateBase(e) {
 }
 
 function handlePaste(e) {
-    e.preventDefault();
     var pastedData = e.clipboardData.getData('text');
 
-    if (BaseConverter.validateNumber(pastedData, selectedBase)) {
-        this.value = this.value + pastedData;
-    } else {
+    if (!BaseConverter.validateNumber(pastedData, selectedBase)) {
         console.error("Pasted data is not allowed. Try to change the format");
+        e.preventDefault();
     }
 }
 
