@@ -56,7 +56,7 @@ function updateBase(e) {
 
     // Update to new Base
     selectedBase = this.value;
-    inputField.placeholder = "Use digits 0-" + BaseConverter.getDigitCharacter(selectedBase - 1);
+    inputField.placeholder = "Input (0-" + BaseConverter.getDigitCharacter(selectedBase - 1) + ")";
 }
 
 function handlePaste(e) {
