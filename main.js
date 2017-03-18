@@ -103,8 +103,8 @@ function addResultBox(e) {
 
     doneButton.appendChild(doneImage);
     deleteButton.appendChild(deleteImage);
-    doneButton.setAttribute('class', 'edit-mode done-button');
-    deleteButton.setAttribute('class', 'edit-mode delete-button');
+    doneButton.setAttribute('class', 'edit-mode done-button clickable');
+    deleteButton.setAttribute('class', 'edit-mode delete-button clickable');
     doneButton.setAttribute('onclick', 'leaveEditMode(this);');
     deleteButton.setAttribute('onclick', 'removeResultBox(this);');
 

@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 header {
   height: 128px;
 }
@@ -14,11 +15,13 @@ header {
   margin-left: 14px;
   float: right;
 }
+
 .header-wrapper a {
   color: white;
   text-transform: uppercase;
 }
-.header-wrapper .link-wrapper{
+
+.header-wrapper .link-wrapper {
   position: absolute;
   bottom: 40px;
   right: 60px;
@@ -32,9 +35,9 @@ h1 {
   color: white;
   color: rgba(255, 255, 255, 0.90);
 }
-h2 {
 
-}
+h2 {}
+
 h2 span {
   border-bottom: 2px solid rgb(0, 0, 255);
 }
@@ -82,9 +85,11 @@ form label {
   font-family: 'Cutive Mono', monospace;
   margin-top: 1em;
 }
+
 .input-number:focus {
   background-color: rgb(0, 255, 255);
 }
+
 select {
   font-size: 1.4em;
   margin-left: 20px;
@@ -97,6 +102,7 @@ select {
 
 input {
   width: 100%;
+  background-color: rgb(255, 255, 0);
 }
 
 .results li {
@@ -109,14 +115,14 @@ input {
 }
 
 .result-base {
-  color: white;
+  color: black;
   border: none;
-  border-right: 3px solid rgba(0, 0, 0, 0.4);
+  border-right: 3px solid rgb(0, 0, 255);
   border-top: 3px solid rgb(0, 0, 255);
   border-bottom: 3px solid rgb(0, 0, 255);
   border-left: 3px solid rgb(0, 0, 255);
   border-radius: 20px 0 0 20px;
-  background-color: rgb(0, 0, 255);
+  background-color: rgb(255, 255, 0);
   display: inline-block;
   padding: 15px;
   width: 24px;
@@ -129,6 +135,7 @@ input {
 
 .add-button {
   cursor: pointer;
+  color: black;
   transition: transform 300ms;
   box-sizing: content-box;
   height: 54px;
@@ -137,19 +144,23 @@ input {
   margin: 15px 0;
   border-radius: 20px;
   border: none;
-  border: 3px solid rgb(255, 0, 255);
+  border: 3px solid rgb(0, 0, 255);
   float: right;
 }
+
 .add-button span {
   padding: 19px 15px 19px 0;
   float: right;
 }
+
 .add-button img {
   transition: transform 300ms;
 }
+
 .add-button:hover img {
   transform: rotate(90deg);
 }
+
 .add-button:hover {
   transform: scale(1.05);
 }
@@ -166,20 +177,26 @@ input {
   transform: translateX(60px);
 }
 
+.clickable {
+  background-color: rgb(255, 255, 0);
+}
+
 .done-button {
   left: 69px;
-  background-color: rgb(0, 255, 0);
-  border: 3px solid rgb(0, 255, 0);
+  /*background-color: rgb(0, 255, 0);*/
+  border: 3px solid rgb(0, 0, 255);
 }
 
 .delete-button {
   left: 0;
   /*background-color: rgb(255, 0, 0);*/
-  border: 3px solid rgb(255, 0, 0);
+  border: 3px solid rgb(0, 0, 255);
 }
+
 .done-button, .delete-button {
   cursor: pointer;
 }
+
 ul {
   clear: both;
 }
@@ -190,9 +207,18 @@ li.expanded .edit-mode {
   opacity: 1;
   /*box-shadow: 0 1px 2px 0 #848484;*/
 }
+
 li.expanded .result-base {
+  background-color: rgb(0, 255, 255);
   text-decoration: underline;
   cursor: auto;
+  border-color: rgb(255, 0, 255);
+  border-radius: 0;
+}
+
+li.expanded .result-number {
+  transform: translateX(20px);
+  background-color: rgb(0, 0, 255);
 }
 
 li.expanded {
@@ -200,7 +226,12 @@ li.expanded {
   transform: translateX(138px);
 }
 
+li:not(.expanded) .result-base {
+  /*background-color: white;*/
+}
+
 .result-number {
+  transition: transform 300ms 150ms, background-color 300ms;
   color: black;
   width: calc(100% - 93px);
   font-size: 20px;
@@ -235,7 +266,8 @@ li.expanded {
     39%;
   }
 }
-@media screen and (min-width: 1200px){
+
+@media screen and (min-width: 1200px) {
   .wrapper {
     width: 100vmin;
     position: relative;
