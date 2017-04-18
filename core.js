@@ -46,31 +46,23 @@ BaseConverter.convert = function(from, to, number) {
     }
 
     function fromBaseTen(number, base) {
-        var potenzen = [],
-            rest = '',
-            ergebnis = '';
+        var rest = '',
+            result = '',
+            split = number.toString().split(",");
 
-        var split = number.toString().split(","),
-            digits = number.toString().split(''),
-            help = 0;
-
-        potenzen = _makePowers(split[0], base);
-
-        // If given number is a number with a comma then loop loop twice. One time for 'body' and one time for the 'comma'
+        // Calculate the natural number part of received number.
+        // e.g. 123 from 123,7482
         rest = split[0];
-        for (var i = (potenzen.length - 1); i >= 0; i--) {
-            if (rest == 0 || (rest - potenzen[i] < 0)) {
-                ergebnis += '0';
-            } else {
-                help = Math.floor(rest / potenzen[i]);
-                ergebnis += BaseConverter.getDigitCharacter(help).toString();
-                rest = rest % potenzen[i];
-            }
+        while (rest != 0) {
+            result = BaseConverter.getDigitCharacter(rest%base) + result;
+            rest = Math.floor(rest/base);
         }
 
-        // calculates the comma
+        // calculates the comma of received number if any
+        // e.g. 0,7482 from 123,7482
         if (split[1]) {
-            ergebnis += ","
+          var help = 0;
+            ergebnis += ",";
             rest = Number('0.' + split[1]);
             for (var i = 1; i <= 8; i++) {
                 if (rest == 0 || (rest - Math.pow(base, -i) < 0)) {
@@ -82,20 +74,8 @@ BaseConverter.convert = function(from, to, number) {
                 }
             }
         }
-        // Rechnet die nötigen Potenzen der Basis, welche für die Umrechnung von nöten sind aus.
-        function _makePowers(number, base) {
-            var i = 0,
-                powerArr = [];
 
-            do {
-                powerArr.push(Math.pow(base, i));
-                i++;
-            } while (Math.pow(base, i) <= number);
-
-            return powerArr;
-        }
-
-        return ergebnis;
+        return result;
     }
 };
 

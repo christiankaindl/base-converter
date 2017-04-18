@@ -52,15 +52,18 @@ h2 span {
   padding: 16px;
   position: relative;
   margin: 0 auto;
+  overflow-x: visible;
 }
 
 form {
   padding: 50px;
-  border: 3px solid rgba(255, 0, 255, 0.7);
+  background-color: rgb(0, 57, 255);
+  box-shadow: 5px 5px 0 -2px white, 5px 5px 0 0 rgb(0, 57, 255);
   border-radius: 25px;
 }
 
 form label {
+  color: white;
   text-transform: uppercase;
 }
 
@@ -72,19 +75,20 @@ form label {
   margin: 0;
   padding: 15px 20px;
   border: none;
-  border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
   color: #212121;
   color: rgba(0, 0, 0, 0.7);
   font-size: 2em;
   font-family: 'Cutive Mono', monospace;
   margin-top: 1em;
   width: 100%;
-  background-color: rgb(255, 255, 0);
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .input-number:focus {
-  background-color: rgb(0, 255, 255);
+  border-color: rgb(0, 255, 255);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 select {
@@ -93,22 +97,21 @@ select {
 }
 
 label {
-  border-bottom: 2px solid rgb(0, 255, 255);
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
 .add-button {
   cursor: pointer;
   color: black;
-  transition: transform 300ms;
+  transition: box-shadow 300ms;
   box-sizing: content-box;
   height: 54px;
   font-size: 16px;
   padding: 0;
-  margin: 15px 0;
-  border-radius: 20px;
+  margin: 30px 0;
   border: none;
-  border: 3px solid rgb(0, 0, 255);
   float: right;
+  background-color: transparent;
 }
 
 .add-button span {
@@ -122,10 +125,6 @@ label {
 
 .add-button:hover img {
   transform: rotate(90deg);
-}
-
-.add-button:hover {
-  transform: scale(1.05);
 }
 
 .results {
@@ -145,42 +144,43 @@ label {
 }
 
 .expanded {
-  transform: translateX(138px);
+  transform: translateX(108px);
 }
 
 .result-base {
+  transition: box-shadow 300ms 300ms, border-radius 300ms;
   color: black;
   border: none;
-  border-right: 3px solid rgb(0, 0, 255);
-  border-top: 3px solid rgb(0, 0, 255);
-  border-bottom: 3px solid rgb(0, 0, 255);
-  border-left: 3px solid rgb(0, 0, 255);
   border-radius: 20px 0 0 20px;
-  background-color: rgb(255, 255, 0);
   display: inline-block;
+  box-shadow: 0 0 0 2px rgb(0, 57, 255) inset;
+  /*box-shadow: 4px 4px 0 -2px white, 4px 4px 0 0px rgb(0, 255, 255), 4px 4px 0 -2px white inset, 4px 4px 0 0 rgb(0, 255, 255) inset, -2px -2px 0 0px rgb(0, 255, 255), -2px -2px 0 0 rgb(0, 255, 255) inset;*/
   padding: 15px;
   width: 24px;
   height: 24px;
   text-align: center;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 16px;
   z-index: 5;
   cursor: pointer;
-  transition: border-radius 300ms, background-color 500ms;
+}
+.result-base:hover {
+  /*box-shadow: 4px 4px 0 -2px white, 4px 4px 0 0px rgb(255, 0, 255), -2px -2px 0 0 rgb(255, 0, 255) inset, 4px 4px 0 -2px white inset, 4px 4px 0 0 rgb(255, 0, 255) inset, -2px -2px 0 0px rgb(255, 0, 255);*/
+  box-shadow: 0 0 0 2px rgb(0, 57, 255) inset, 5px 0 0 0px rgb(0, 57, 255);
 }
 
 .expanded .result-base {
-  background-color: rgb(0, 255, 255);
   text-decoration: underline;
   cursor: auto;
-  border-color: rgb(255, 0, 255);
-  border-radius: 0;
+  border-radius: 0 20px 20px 0;
+  box-shadow: 4px 4px 0 -2px white, 4px 4px 0 0px rgb(0, 57, 255), -2px -2px 0 0 rgb(0, 57, 255) inset, 4px 4px 0 -2px white inset, 4px 4px 0 0 rgb(0, 57, 255) inset, -2px -2px 0 0px rgb(0, 57, 255);
 }
 
 .result-number {
   transition: transform 200ms, background-color 500ms;
-  color: black;
-  width: calc(100% - 93px);
+  font-family: 'Cutive Mono', monospace;
+  color: white;
+  width: calc(100% - 84px);
   font-size: 20px;
   overflow-x: auto;
   float: right;
@@ -188,15 +188,12 @@ label {
   z-index: 5;
   height: 24px;
   border-radius: 0 20px 20px 0;
-  background-color: rgb(0, 255, 255);
-  border-top: 3px solid rgb(0, 0, 255);
-  border-right: 3px solid rgb(0, 0, 255);
-  border-bottom: 3px solid rgb(0, 0, 255);
+  background-color: rgb(0, 57, 255);
 }
 
 .expanded .result-number {
   transform: translateX(20px);
-  background-color: rgb(0, 0, 255);
+  background-color: #888888;
 }
 
 .edit-mode {
@@ -205,36 +202,37 @@ label {
   width: 54px;
   position: absolute;
   top: 0;
-  border-radius: 20px;
   z-index: -1;
   opacity: 0;
   transform: translateX(60px);
 }
 
 .expanded .edit-mode {
-  transition: transform 500ms 50ms, opacity 500ms 50;
-  transform: translateX(-138px);
+  transition: transform 300ms 50ms, box-shadow 300ms;
+  transform: translateX(-108px);
   opacity: 1;
 }
 
 .clickable {
-  background-color: rgb(255, 255, 0);
+  cursor: pointer;
+  /*border: 2px solid rgb(0, 255, 255);*/
+  /*border-radius: 20px;*/
+  box-shadow: 4px 4px 0 -2px white, 4px 4px 0 0px rgb(0, 255, 255), 4px 4px 0 -2px white inset, 4px 4px 0 0 rgb(0, 255, 255) inset, -2px -2px 0 0px rgb(0, 255, 255), -2px -2px 0 0 rgb(0, 255, 255) inset;
+}
+
+.clickable:hover {
+  box-shadow: 0 0 0 2px rgb(0, 57, 255);
 }
 
 .done-button {
-  left: 69px;
-  /*background-color: rgb(0, 255, 0);*/
-  border: 3px solid rgb(0, 0, 255);
+  left: 54px;
+  z-index: 15;
 }
 
 .delete-button {
   left: 0;
-  /*background-color: rgb(255, 0, 0);*/
-  border: 3px solid rgb(0, 0, 255);
-}
-
-.done-button, .delete-button {
-  cursor: pointer;
+  border-radius: 20px 0 0 20px;
+  z-index: 20;
 }
 
 @media screen and (min-width: 900px) {
