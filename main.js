@@ -105,6 +105,7 @@ function addResultBox(e) {
     baseElement.setAttribute('class', 'result-base');
     numberElement.setAttribute('class', 'result-number');
     dividerImage.setAttribute('src', 'divider-arrow.png');
+    dividerImage.setAttribute('class', 'divider-arrow');
 
     newListItem.appendChild(baseElement);
     newListItem.appendChild(dividerImage);

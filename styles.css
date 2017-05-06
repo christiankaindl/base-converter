@@ -30,6 +30,33 @@ main {
   height: 80%;
 }
 
+li {
+  position: relative;
+  overflow-x: auto;
+}
+li .divider-arrow,
+li .result-base,
+li .result-number {
+  transition: transform 400ms cubic-bezier(.14,.96,.71,1);
+}
+li:hover .divider-arrow,
+li:hover .result-base,
+li:hover .result-number {
+  transition: transform 400ms cubic-bezier(.14,.96,.71,1);
+  transition: transform 400ms cubic-bezier(.14,.96,.71,1.32);
+  transform: translateX(64px);
+}
+li:hover .divider-arrow {
+  transition-delay: 60ms;
+}
+li:hover .result-base {
+  transition-delay: 100ms;
+}
+li:hover .delete-button {
+  left: 0;
+  transition: left 400ms cubic-bezier(.14,.96,.71,1) 130ms;
+  transition: left 400ms cubic-bezier(.14,.96,.71,1.32) 130ms;
+}
 .result-base {
   width: 64px;
   text-align: center;
@@ -37,6 +64,13 @@ main {
 }
 .result-number {
   padding: 0 10px;
+}
+.delete-button {
+  position: absolute;
+  left: -64px;
+  width: 64px;
+  top: 0;
+  bottom: 0;
 }
 h1 {
   margin: 0;
