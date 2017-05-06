@@ -1,7 +1,8 @@
 'use strict';
 
 var resultBox = document.getElementsByClassName('result-number'),
-    resultBoxBase = [];
+    resultBoxBase = [],
+    addBaseButton = document.getElementById('add-base');
 
 var addedCharacter = "",
     selectedBase,
@@ -14,9 +15,9 @@ window.onload = function() {
     updateResultBoxArray();
 };
 
-// Initialize eventlistener
-document.getElementById('add-base').addEventListener("click", addResultBox);
+// Initialize EventListener
 document.getElementById('base').addEventListener("change", updateBase);
+addBaseButton.addEventListener('click', addBase);
 inputField.addEventListener("paste", handlePaste);
 
 // Is needed to detect which characters were added to the input field
@@ -40,7 +41,6 @@ function keyInput(e) {
 
 // NOTE: keyInput() does get triggered before inputHandler()
 function inputHandler(e) {
-  console.log('resultBoxBase: ' + resultBoxBase);
     // create results
     let results = BaseConverter.convert(selectedBase, resultBoxBase, this.value);
 
@@ -89,13 +89,14 @@ function removeResultBox(elem) {
     updateResultBoxArray();
 }
 
-function addResultBox(e) {
+function addResultBox(base) {
     var newListItem = document.createElement('LI'),
         baseElement = document.createElement('DIV'),
         numberElement = document.createElement('DIV'),
         deleteButton = document.createElement('DIV'),
         deleteImage = document.createElement('IMG'),
-        dividerImage = document.createElement('IMG');
+        dividerImage = document.createElement('IMG'),
+        textNode = document.createTextNode(base + '');
 
     deleteImage.setAttribute('src', 'delete.png');
     deleteButton.appendChild(deleteImage);
@@ -103,6 +104,7 @@ function addResultBox(e) {
     deleteButton.setAttribute('onclick', 'removeResultBox(this);');
 
     baseElement.setAttribute('class', 'result-base');
+    baseElement.appendChild(textNode);
     numberElement.setAttribute('class', 'result-number');
     dividerImage.setAttribute('src', 'divider-arrow.png');
     dividerImage.setAttribute('class', 'divider-arrow');
@@ -121,4 +123,28 @@ function updateResultBoxArray() {
 
         // NOTE: At some point there could be the need for a config file, to allow changes in the markup let the code untouched
     }
+}
+
+function addBase(e) {
+    var base = document.getElementById('new-base').value.split(',');
+
+    for (let i = 0; i < base.length; i++) {
+        let help = BaseConverter.getDigitCharacter(base[i]);
+        if (help && help >= 2) {
+            console.log(BaseConverter.getDigitCharacter(base[i]));
+            addResultBox(base[i]);
+            updateResultBoxArray();
+        } else {
+            let help = BaseConverter.getDigitValue(base[i]);
+
+            if (help && help >= 2) {
+                addResultBox(BaseConverter.getDigitValue(base[i]));
+                updateResultBoxArray();
+            }
+        }
+    }
+
+    document.getElementById('new-base').value = "";
+
+
 }

@@ -125,6 +125,10 @@ input[type="range"] {
 }
 .results li.add-base-wrapper {
   height: 48px;
+  position: sticky;
+  top: 16px;
+  background-color: white;
+  z-index: 500;
 }
 #add-base img {
   height: 48px;
@@ -135,11 +139,16 @@ input[type="range"] {
   margin: 0;
 }
 button {
+  order: -1;
+  cursor: pointer;
   border: none;
   background-color: white;
   padding: 0 10px;
   height: 48px;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
+}
+button:hover {
+  background-color: whitesmoke;
 }
 @media (min-width: 900px) {
   header {
@@ -164,7 +173,9 @@ button {
 
   ul {
     width: 50%;
-    padding: 0;
+    padding: 5px;
     margin-left: 40px;
+    max-height: 60vh;
+    overflow-y: auto;
   }
 }
