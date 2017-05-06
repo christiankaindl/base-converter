@@ -48,11 +48,11 @@ BaseConverter.convert = function(from, to, number) {
     function fromBaseTen(number, base) {
         var rest = '',
             result = '',
-            someVar = number.toString().split(",");
+            split = number.toString().split(",");
 
         // Calculate the natural number part of received number.
         // e.g. 123 from 123,7482
-        rest = someVar[0];
+        rest = split[0];
         rest = Number(rest);
         while (rest != 0) {
             result = BaseConverter.getDigitCharacter(rest%base) + result;
@@ -61,7 +61,7 @@ BaseConverter.convert = function(from, to, number) {
 
         // calculates the comma of received number if any
         // e.g. 0,7482 from 123,7482
-        if (someVar[1]) {
+        if (split[1]) {
           var help = 0;
             ergebnis += ",";
             rest = Number('0.' + split[1]);

@@ -40,6 +40,7 @@ function keyInput(e) {
 
 // NOTE: keyInput() does get triggered before inputHandler()
 function inputHandler(e) {
+  console.log('resultBoxBase: ' + resultBoxBase);
     // create results
     let results = BaseConverter.convert(selectedBase, resultBoxBase, this.value);
 
@@ -131,12 +132,8 @@ function addResultBox(e) {
 
 function updateResultBoxArray() {
     for (var i = 0; i < resultBox.length; i++) {
-        resultBoxBase[i] = document.getElementsByClassName('result-base')[i].value;
+        resultBoxBase[i] = document.getElementsByClassName('result-base')[i].innerHTML;
+
+        // NOTE: At some point there could be the need for a config file, to allow changes in the markup let the code untouched
     }
 }
-
-//----- BASE CONVERTER CORE -----//
-/**
-This function receives a number and the base from which the number comes from.
-It then chops the received number apart and multiplies the value of the digit with the place value to produce the base ten result.
-*/
