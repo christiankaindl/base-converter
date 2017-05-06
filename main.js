@@ -97,7 +97,7 @@ function addResultBox(e) {
         deleteImage = document.createElement('IMG'),
         dividerImage = document.createElement('IMG');
 
-    deleteImage.setAttribute('src', 'delete.svg');
+    deleteImage.setAttribute('src', 'delete.png');
     deleteButton.appendChild(deleteImage);
     deleteButton.setAttribute('class', 'delete-button');
     deleteButton.setAttribute('onclick', 'removeResultBox(this);');

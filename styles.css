@@ -32,6 +32,7 @@ main {
 
 li {
   position: relative;
+  overflow-y: hidden;
   overflow-x: auto;
 }
 li .divider-arrow,
@@ -66,11 +67,14 @@ li:hover .delete-button {
   padding: 0 10px;
 }
 .delete-button {
+  cursor: pointer;
   position: absolute;
   left: -64px;
   width: 64px;
   top: 0;
   bottom: 0;
+  transition: left 400ms cubic-bezier(.14,.96,.71,1);
+  transition: left 400ms cubic-bezier(.14,.96,.71,1.32);
 }
 h1 {
   margin: 0;
