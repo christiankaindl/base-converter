@@ -30,6 +30,14 @@ main {
   height: 80%;
 }
 
+.result-base {
+  width: 64px;
+  text-align: center;
+  font-style: italic;
+}
+.result-number {
+  padding: 0 10px;
+}
 h1 {
   margin: 0;
   font-weight: normal;
@@ -76,6 +84,24 @@ input[type="text"]:hover, input[type="text"]:focus {
 }
 input[type="range"] {
   margin: 0;
+}
+.results li.add-base-wrapper {
+  height: 48px;
+}
+#add-base img {
+  height: 48px;
+}
+#new-base {
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+button {
+  border: none;
+  background-color: white;
+  padding: 0 10px;
+  height: 48px;
+  border-radius: 8px;
 }
 @media (min-width: 900px) {
   header {

@@ -90,44 +90,28 @@ function removeResultBox(elem) {
 }
 
 function addResultBox(e) {
-    var newListItem = document.createElement('LI');
-    var baseValue = "5";
-    var baseElement = document.createElement('INPUT');
-    var textElement = document.createElement('DIV');
-    var doneButton = document.createElement('DIV');
-    var deleteButton = document.createElement('DIV');
-    var doneImage = document.createElement('IMG');
-    var deleteImage = document.createElement('IMG');
+    var newListItem = document.createElement('LI'),
+        baseElement = document.createElement('DIV'),
+        numberElement = document.createElement('DIV'),
+        deleteButton = document.createElement('DIV'),
+        deleteImage = document.createElement('IMG'),
+        dividerImage = document.createElement('IMG');
 
     deleteImage.setAttribute('src', 'delete.svg');
-    doneImage.setAttribute('src', 'done.svg');
-
-    doneButton.appendChild(doneImage);
     deleteButton.appendChild(deleteImage);
-    doneButton.setAttribute('class', 'edit-mode done-button clickable');
-    deleteButton.setAttribute('class', 'edit-mode delete-button clickable');
-    doneButton.setAttribute('onclick', 'leaveEditMode(this);');
+    deleteButton.setAttribute('class', 'delete-button');
     deleteButton.setAttribute('onclick', 'removeResultBox(this);');
 
-
     baseElement.setAttribute('class', 'result-base');
-    baseElement.setAttribute('type', 'text');
-    baseElement.setAttribute('value', '--');
-    baseElement.setAttribute('onfocus', 'enterEditMode(this);')
-    textElement.setAttribute('class', 'result-number');
+    numberElement.setAttribute('class', 'result-number');
+    dividerImage.setAttribute('src', 'divider-arrow.png');
 
-    baseElement.innerHTML = baseValue;
-    textElement.innerHTML = "";
-
-    newListItem.appendChild(doneButton);
-    newListItem.appendChild(deleteButton);
     newListItem.appendChild(baseElement);
-    newListItem.appendChild(textElement);
+    newListItem.appendChild(dividerImage);
+    newListItem.appendChild(numberElement);
+    newListItem.appendChild(deleteButton);
 
-    console.log(newListItem);
     document.getElementsByClassName('results')[0].appendChild(newListItem);
-
-    baseElement.focus();
 }
 
 function updateResultBoxArray() {
