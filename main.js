@@ -101,6 +101,7 @@ function addResultBox(base) {
     newListItem.appendChild(numberElement);
     newListItem.appendChild(deleteButton);
 
+    numberElement.innerHTML = BaseConverter.convert(selectedBase, base, inputField.value);
     document.getElementsByClassName('results')[0].appendChild(newListItem);
 }
 
@@ -116,22 +117,20 @@ function addBase(e) {
     var base = document.getElementById('new-base').value.split(','),
         length = base.length;
 
-console.log(BaseConverter.getDigitCharacter(base[0]));
     for (let i = 0; i < length; i++) {
         let help = BaseConverter.getDigitCharacter(base[i]);
         if (help && help != -1) {
             console.log(BaseConverter.getDigitCharacter(base[i]));
             addResultBox(base[i]);
-            updateResultBoxArray();
         } else {
             let help = BaseConverter.getDigitValue(base[i]);
 
             if (help && help >= 2) {
                 addResultBox(BaseConverter.getDigitValue(base[i])+1);
-                updateResultBoxArray();
             }
         }
     }
 
+    updateResultBoxArray();
     document.getElementById('new-base').value = "";
 }
