@@ -133,4 +133,10 @@ function addBase(e) {
 
     updateResultBoxArray();
     document.getElementById('new-base').value = "";
+
+    document.getElementById('res').scrollTo({
+  top: 8000, 
+  left: 0,
+  behavior: 'smooth'
+});
 }
