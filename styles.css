@@ -194,8 +194,15 @@ button:hover {
   header {
     height: 128px;
   }
+  body {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 128px);
+    justify-content: center;
+  }
   .logo img {
     height: 50%;
+    -webkit-
   }
   .header-wrapper img {
     height: 30%;
@@ -210,7 +217,10 @@ button:hover {
   }
   main > * {
     flex-basis: 50%;
-
+  }
+  .number-converter,
+  .results {
+    margin: 0;
   }
 .input {
   flex-basis: 40%;
