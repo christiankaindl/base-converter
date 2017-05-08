@@ -71,21 +71,6 @@ function handlePaste(e) {
     }
 }
 
-function enterEditMode(elem) {
-    if (elem.parentNode.className !== "expanded") {
-        elem.parentNode.className = "expanded";
-        elem.focus();
-    }
-}
-
-function leaveEditMode(button) {
-    if (button.parentNode.className == "expanded") {
-        button.parentNode.className = "";
-    }
-    updateResultBoxArray();
-    inputField.focus();
-}
-
 function removeResultBox(elem) {
     elem.parentNode.parentNode.removeChild(elem.parentNode);
     updateResultBoxArray();
@@ -147,6 +132,4 @@ function addBase(e) {
     }
 
     document.getElementById('new-base').value = "";
-
-
 }
