@@ -16,7 +16,7 @@ window.onload = function() {
 };
 
 // Initialize EventListener
-document.getElementById('base').addEventListener("change", updateBase);
+document.getElementById('base').addEventListener("input", updateBase);
 addBaseButton.addEventListener('click', addBase);
 inputField.addEventListener("paste", handlePaste);
 
@@ -58,6 +58,8 @@ function updateBase(e) {
     // Update to new Base
     selectedBase = this.value;
     inputField.placeholder = "Input (0-" + BaseConverter.getDigitCharacter(selectedBase - 1) + ")";
+
+    document.querySelector('label[for="base"]').innerHTML = selectedBase;
 }
 
 function handlePaste(e) {
