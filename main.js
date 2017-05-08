@@ -113,11 +113,13 @@ function updateResultBoxArray() {
 }
 
 function addBase(e) {
-    var base = document.getElementById('new-base').value.split(',');
+    var base = document.getElementById('new-base').value.split(','),
+        length = base.length;
 
-    for (let i = 0; i < base.length; i++) {
+console.log(BaseConverter.getDigitCharacter(base[0]));
+    for (let i = 0; i < length; i++) {
         let help = BaseConverter.getDigitCharacter(base[i]);
-        if (help && help >= 2) {
+        if (help && help != -1) {
             console.log(BaseConverter.getDigitCharacter(base[i]));
             addResultBox(base[i]);
             updateResultBoxArray();
@@ -125,7 +127,7 @@ function addBase(e) {
             let help = BaseConverter.getDigitValue(base[i]);
 
             if (help && help >= 2) {
-                addResultBox(BaseConverter.getDigitValue(base[i]));
+                addResultBox(BaseConverter.getDigitValue(base[i])+1);
                 updateResultBoxArray();
             }
         }

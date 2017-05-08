@@ -100,6 +100,9 @@ ul {
   list-style-type: none;
   padding: 5px;
 }
+.results li:first-child {
+  margin-top: 10px;
+}
 .results li {
   display: flex;
   align-items: center;
