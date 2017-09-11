@@ -37,15 +37,13 @@ var Base = {
       }
 
       function calcFractionPart() {
-        var numberFractionDigits = number.split(",")[1].split("");
-        var temp = 0;
+        var numberFractionDigits = number.split(",")[1].split(""),
+            temp = 0;
 
-        sum += ',';
-
-        for (let i in numberFractionDigits) {
+        for (let i in numberFractionDigits)
           temp += Base.getDigitValue(numberFractionDigits[i]) * Math.pow(base, -(i + 1));
-        }
-        sum += temp.toString().substring(2);
+
+        sum += `,${temp.toString()}`;
       }
 		}
 
