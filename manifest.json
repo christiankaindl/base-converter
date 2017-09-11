@@ -1,0 +1,9 @@
+{
+  "name": "Base Converter",
+  "short_name": "Base converter",
+
+  "description": "Easily convert between numerical base systems.",
+  "background_color": "blue",
+  "display": "standalone",
+  "orientation": "any"
+}
