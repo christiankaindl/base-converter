@@ -32,7 +32,7 @@ function keyInput(e) {
     var addedCharacter = (e.charCode == 0) ? '-1' : String.fromCharCode(e.charCode);
 
     if (!e.ctrlKey) {
-        if (!BaseConverter.validateNumber(addedCharacter)) {
+        if (!Base.validateNumber(addedCharacter)) {
             console.error("Character not allowed. Use digits 0-" + (selectedBase - 1));
             e.preventDefault();
         }
@@ -42,7 +42,7 @@ function keyInput(e) {
 // NOTE: keyInput() does get triggered before inputHandler()
 function inputHandler(e) {
     // create results
-    let results = BaseConverter.convert(selectedBase, resultBoxBase, this.value);
+    let results = Base.convert(selectedBase, resultBoxBase, this.value);
 
     // add results to the page
     for (var i = 0; i < resultBox.length; i++) {
@@ -52,12 +52,12 @@ function inputHandler(e) {
 
 function updateBase(e) {
     if (inputField.value != "") {
-        inputField.value = BaseConverter.convert(selectedBase, this.value, inputField.value);
+        inputField.value = Base.convert(selectedBase, this.value, inputField.value);
     }
 
     // Update to new Base
     selectedBase = this.value;
-    inputField.placeholder = "Input (0-" + BaseConverter.getDigitCharacter(selectedBase - 1) + ")";
+    inputField.placeholder = "Input (0-" + Base.getNumberCharacter(selectedBase - 1) + ")";
 
     document.querySelector('label[for="base"]').innerHTML = selectedBase;
 }
@@ -65,7 +65,7 @@ function updateBase(e) {
 function handlePaste(e) {
     var pastedData = e.clipboardData.getData('text');
 
-    if (!BaseConverter.validateNumber(pastedData, selectedBase)) {
+    if (!Base.validateNumber(pastedData, selectedBase)) {
         console.error("Pasted data is not allowed. Try to change the format");
         e.preventDefault();
     }
@@ -101,7 +101,7 @@ function addResultBox(base) {
     newListItem.appendChild(numberElement);
     newListItem.appendChild(deleteButton);
 
-    numberElement.innerHTML = BaseConverter.convert(selectedBase, base, inputField.value);
+    numberElement.innerHTML = Base.convert(selectedBase, base, inputField.value);
     document.getElementsByClassName('results')[0].appendChild(newListItem);
 }
 
@@ -118,15 +118,15 @@ function addBase(e) {
         length = base.length;
 
     for (let i = 0; i < length; i++) {
-        let help = BaseConverter.getDigitCharacter(base[i]);
+        let help = Base.getNumberCharacter(base[i]);
         if (help && help != -1) {
-            console.log(BaseConverter.getDigitCharacter(base[i]));
+            console.log(Base.getNumberCharacter(base[i]));
             addResultBox(base[i]);
         } else {
-            let help = BaseConverter.getDigitValue(base[i]);
+            let help = Base.getDigitValue(base[i]);
 
             if (help && help >= 2) {
-                addResultBox(BaseConverter.getDigitValue(base[i])+1);
+                addResultBox(Base.getDigitValue(base[i])+1);
             }
         }
     }
