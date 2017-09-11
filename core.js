@@ -1,57 +1,62 @@
 'use strict';
 
 var Base = {
-	convert (from, to, number) {
+	convert (from, targetBase, number) {
 		var isComma = isComma || false;
 		var results = [];
 
-		to = Array.isArray(to) ? to : [to];
-		if (Base.validateNumber(number, from)) {
-		  if (from == 10) {
-		    for (var i = 0; i < to.length; i++) {
-		      results[i] = fromBaseTen(number, to[i]);
-		    }
-		  } else {
-		    let baseTenNumber = toBaseTen(number, from);
+		if (!Base.validateNumber(number, from))
+      return false;
 
-		    for (var i = 0; i < to.length; i++) {
-		      results[i] = fromBaseTen(baseTenNumber, to[i]);
-		    }
-		  }
-		} else {
-		  return false;
-		}
+	  if (from !== 10)
+	    number = toBaseTen(number, from);
+
+    // Convert targetBase to array if it is not yet
+    targetBase = Array.isArray(targetBase) ? targetBase : [targetBase];
+	  for (let i in targetBase)
+	    results[i] = fromBaseTen(number, targetBase[i]);
+
 		return results;
 
 		function toBaseTen(number, base) {
 	    var digits = [],
 	        sum = 0;
-	    var split = number.split(",");
 
-	    for (var i = 0; i < split[0].length; i++) {
-	      sum += Base.getDigitValue(split[0][i]) * Math.pow(base, split[0].length - 1 - i);
-	    }
+      calcIntegerPart();
 
-	    if (split[1]) {
-	      sum += ',';
-	      var temp = 0;
-	      for (var i = 0; i < split[1].length; i++) {
-	        temp += Base.getDigitValue(split[1][i]) * Math.pow(base, -(i + 1));
-	      }
-	      sum += temp.toString().substring(2);
-	    }
+      if (numberSplit[1])
+        calcFractionPart();
 
-	    return sum.toString();
+      return sum.toString();
+
+      function calcIntegerPart() {
+      	var numberIntDigits = number.split(",")[0].split("");
+
+        for (let i in numberIntDigits)
+	        sum += Base.getDigitValue(numberIntDigits[i]) * Math.pow(base, numberIntDigits.length - 1 - i);
+      }
+
+      function calcFractionPart() {
+        var numberFractionDigits = number.split(",")[1].split("");
+        var temp = 0;
+
+        sum += ',';
+
+        for (let i in numberFractionDigits) {
+          temp += Base.getDigitValue(numberFractionDigits[i]) * Math.pow(base, -(i + 1));
+        }
+        sum += temp.toString().substring(2);
+      }
 		}
 
 		function fromBaseTen(number, base) {
       var rest = '',
           result = '',
-          split = number.toString().split(",");
+          numberSplit = number.toString().split(",");
 
       // Calculate the natural number part of received number.
       // e.g. 123 from 123,7482
-      rest = split[0];
+      rest = numberSplit[0];
       rest = Number(rest);
       while (rest != 0) {
         result = Base.getNumberCharacter(rest%base) + result;
@@ -60,10 +65,10 @@ var Base = {
 
       // calculates the comma of received number if any
       // e.g. 0,7482 from 123,7482
-      if (split[1]) {
+      if (numberSplit[1]) {
         var help = 0;
         ergebnis += ",";
-        rest = Number('0.' + split[1]);
+        rest = Number('0.' + numberSplit[1]);
         for (var i = 1; i <= 8; i++) {
           if (rest == 0 || (rest - Math.pow(base, -i) < 0)) {
             ergebnis += '0';
@@ -78,7 +83,6 @@ var Base = {
 		  return result;
     }
   },
-
 
 	/** This function gets a base 10 number and returns the character that corresponds to that value
 	 * E.g. 14 returns 'E'; 8 returns '8'
