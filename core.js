@@ -24,7 +24,7 @@ var Base = {
 
       calcIntegerPart();
 
-      if (numberSplit[1])
+      if (number.split(",")[1])
         calcFractionPart();
 
       return sum.toString();
@@ -93,42 +93,38 @@ var Base = {
 	 * E.g. 'E' returns 14; '8' returns 8
 	 */
 	getDigitValue (digit) {
-    return Base.digits.indexOf(digit.toUpperCase());
+	  var digitValue = Base.digits.indexOf(digit.toUpperCase());
+
+	  if (digitValue === -1)
+	    return false;
+
+    // Return true if number is 0 so the call-site can make safe boolean checks
+    return (digitValue === 0) ? true : digitValue;
 	},
 
   /** Takes a number and validates it
-	 * Returns true if argument is a number, false if not
+	 * Returns true if argument is a number in the corresponding base, false if not
 	 */
-	validateNumber (number, base) {
-		var isComma = isComma || false;
-		var digits = number.split("");
-
-		// When the backspace key is pressed...
-		if (number == '-1') {
-		    // ...test if comma was deleted
-		    if (inputField.value.indexOf(",") == -1) {
-		        isComma = false;
-		    }
-		    return true;
-		}
+	validateNumber (number, base = 10) {
+		var isComma = false;
+		var digits = number.toString().split("");
 
 		// Loop throught the received number and check every digit for its validness
-		for (var i = 0; i < digits.length; i++) {
-		    if (digits[i] == "," && isComma == false) {
-		        isComma = true;
-		        return true;
-		    } else if (digits[i] == "," && isComma == true) {
-		        return false;
-		    }
+		for (let i in digits) {
+		  let digitValue = Base.getDigitValue(digits[i]);
 
-		    // IDEA: Use foreach() and declare this variable outside of the for loop
-		    let digitValue = Base.getDigitValue(digits[i]);
+	    if (digits[i] === "," && isComma === false)
+        isComma = true;
 
-		    if (digitValue >= selectedBase || digitValue == -1) {
-		        return false;
-		    }
+	    if (digits[i] === "," && isComma === true)
+	      return false;
+
+      if (!digitValue || digitValue >= base)
+	      return false;
 		}
-		return true;
+
+    // Return true if number is 0 so the call-site can make safe boolean checks
+		return (number ? number : true);
 	},
 
 	// Array that maps all the digits from base 2 to 36
