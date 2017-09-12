@@ -52,18 +52,28 @@ var Base = {
           result = '',
           numberSplit = number.toString().split(",");
 
-      // Calculate the natural number part of received number.
-      // e.g. 123 from 123,7482
-      rest = numberSplit[0];
-      rest = Number(rest);
-      while (rest != 0) {
-        result = Base.getNumberCharacter(rest%base) + result;
-        rest = Math.floor(rest/base);
-      }
+      calcIntegerPart();
 
       // calculates the comma of received number if any
       // e.g. 0,7482 from 123,7482
       if (numberSplit[1]) {
+        calcFractionPart();
+		  }
+
+		  return result;
+
+		  function calcIntegerPart() {
+      	// Calculate the natural number part of received number.
+        // e.g. 123 from 123,7482
+        rest = numberSplit[0];
+        rest = Number(rest);
+        while (rest != 0) {
+          result = Base.getNumberCharacter(rest%base) + result;
+          rest = Math.floor(rest/base);
+        }
+      }
+
+      function calcFractionPart() {
         var help = 0;
         ergebnis += ",";
         rest = Number('0.' + numberSplit[1]);
@@ -76,9 +86,7 @@ var Base = {
             rest = rest % Math.pow(base, -i);
           }
 		    }
-		  }
-
-		  return result;
+      }
     }
   },
 
