@@ -1,5 +1,25 @@
 'use strict';
 
+const {h, app} = hyperapp;
+console.log("TRADUBLBEBMD");
+app({
+  state: {
+    number: null,
+    base: 10,
+    targets: [],
+  },
+  view: (state, actions) => {
+    h("input", {id: "input", oninput: actions.convertInput, value: state.number});
+  },
+  actions: {
+    addTarget() {},
+    convertInput(state){
+      console.log(state);
+    },
+
+  }
+});
+
 var resultBox = document.getElementsByClassName('result-number'),
     resultBoxBase = [],
     addBaseButton = document.getElementById('add-base');
