@@ -2,24 +2,81 @@
 
 const {h, app} = hyperapp;
 console.log("TRADUBLBEBMD");
+
+const resultBox = (number, base, targetBase, remove) => {
+  console.log("BLOOO");
+  return h("li", {class: "result-box"},[
+    h("div", {class: "result-box-base"}, targetBase),
+    h("div", {class: "result-box-number"}, Base.convert(base, targetBase, number)),
+    h("button", {class: "result-box-delete-button", onclick: (e) => {remove(e.target)}})
+  ]);
+
+}
+
+
 app({
   state: {
-    number: null,
+    number: 123,
     base: 10,
-    targets: [],
+    outputTargets: [2, 8, 16]
   },
   view: (state, actions) => {
-    h("input", {id: "input", oninput: actions.convertInput, value: state.number});
-  },
-  actions: {
-    addTarget() {},
-    convertInput(state){
-      console.log(state);
+    return h("div", {class: "hyperapp"}, [
+      h("section", {}, [
+        h("label", {for: "number"}, "SOME TEXR"),
+        h("input", {oninput: (e) => actions.checkInput(e.target.value), id: "input-number", type: "text", name: "number", autofocus: ""}),
+        h("label", {for: "base"}, "SOME MOAR TEXT"),
+        h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1"})
+        ]
+      ),
+      h("section", {},
+        state.outputTargets.map((i) => { return resultBox(state.number, state.base, i, actions.removeResultBox);})
+      ),
+      h("button", {onclick: (e) => {actions.addResultBox()}}, "ADD")
+    ]);
     },
+  actions: {
+    checkInput(state, actions, input) {
+      if (Base.validateNumber(input, state.base))
+        return {number: input};
 
-  }
+      actions.giveErrorMessage(input);
+    },
+    addResultBox(state) {
+      console.log(state.outputTargets.unshift(5));
+      return {
+        outputTargets: state.outputTargets
+      }
+    },
+    removeResultBox(state, actions, target) {
+      console.log(target.parentNode);
+      var base = target.parentElement.getElementsByClassName('result-box-base')[0].textContent,
+        position = state.outputTargets.indexOf(Number(base));
+
+      // splice() modyfies the array directly and returns the deleted element
+      state.outputTargets.splice(position, 1);
+
+      return {
+        outputTargets: state.outputTargets
+      };
+    },
+    convertInput(state, actions, value){
+      console.log(value);
+        return {number: value};
+    },
+    giveErrorMessage(state, actions, input) {
+      console.log("WRONG!");
+    }
+
+  },
+  events: {
+    validInput() {
+      return {number: "", base: ""};
+    }
+  },
+  root: document.getElementById("main")
 });
-
+/*
 var resultBox = document.getElementsByClassName('result-number'),
     resultBoxBase = [],
     addBaseButton = document.getElementById('add-base');
@@ -157,4 +214,4 @@ function addBase(e) {
     left: 0,
     behavior: 'smooth'
   });
-}
+}*/

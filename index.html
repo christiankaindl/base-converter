@@ -9,6 +9,7 @@
   <link rel="shortcut icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
   <link rel="manifest" href="manifest.json">
+    <script type="text/javascript" src="src/hyperapp-0-12-1.js"></script>
 </head>
 
 <body>
@@ -17,29 +18,28 @@
       <img src="assets/logo/BaseConverterLogo.svg" alt="Logo">
     </div>
     <div class="header-wrapper">
-      <h1>Base Converter</h1>
+      <h1>Convert Bases</h1>
       <img src="assets/UI/mark-github.svg" alt="GitHub logo">
     </div>
   </header>
 
-  <main>
-      <div class="input">
-        <form class="number-converter" onsubmit="return false;" action="" method="">
-          <div class="number">
-            <label for="number">
-              <h2>Convert numbers to other
-    base systems. Simply start
-    by typing a number:</h2>
-              </label>
-            <input class="input-number" type="text" name="number" autofocus="" placeholder="Input" id="number">
-          </div>
-          <div class="base">
-            <label for="base">10 </label>
-            <input type="range" id="base" name="base" min="2" max="36" step="1">
-          </div>
-        </form>
-      </div>
+  <main id="main">
+   <!-- <section class="input">
 
+      <label for="number">
+        <h2>
+          Convert numbers to other base systems. Simply start by typing a number:
+        </h2>
+      </label>
+      <input class="input-number" type="text" name="number" autofocus="" placeholder="Input" id="number">
+
+      <label for="base">10 </label>
+      <input type="range" id="base" name="base" min="2" max="36" step="1">
+
+    </section>
+
+    <section>
+      <div id="output"></div>
       <ul class="results" id="res">
         <li class="add-base-wrapper">
           <input id="new-base" type="text" name="new-base" placeholder='e.g. "7", "A" or "5,8,F"'>
@@ -47,31 +47,26 @@
         </li>
         <li class="">
           <div class="result-base">2</div>
-          <img class="divider-arrow" src="assets/UI/divider-arrow.png">
           <div class="result-number">(Output)</div>
-          <div class="delete-button" onclick="removeResultBox(this)">
-            <img src="assets/UI/delete.png"></div>
+          <div class="delete-button" onclick="removeResultBox(this)"></div>
         </li>
         <li class="">
           <div class="result-base">3</div>
-          <img class="divider-arrow" src="assets/UI/divider-arrow.png">
           <div class="result-number">(Output)</div>
-          <div class="delete-button" onclick="removeResultBox(this)">
-            <img src="assets/UI/delete.png"></div>
+          <div class="delete-button" onclick="removeResultBox(this)"></div>
         </li>
         <li class="">
           <div class="result-base">16</div>
-          <img class="divider-arrow" src="assets/UI/divider-arrow.png">
           <div class="result-number">(Output)</div>
-          <div class="delete-button" onclick="removeResultBox(this)">
-            <img src="assets/UI/delete.png"></div>
+          <div class="delete-button" onclick="removeResultBox(this)"></div>
         </li>
       </ul>
+    </section>-->
   </main>
 
   <script type="text/javascript" src="src/core.js"></script>
-  <script type="text/javascript" src="src/hyperapp-0-12-1.js"></script>
-  <!--<script type="text/javascript" src="main.js"></script>-->
+
+  <script type="text/javascript" src="src/main.js"></script>
 </body>
 
 </html>
