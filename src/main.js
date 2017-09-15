@@ -22,15 +22,15 @@ app({
   },
   view: (state, actions) => {
     return h("div", {class: "hyperapp"}, [
-      h("section", {}, [
-        h("label", {for: "number"}, "SOME TEXR"),
+      h("section", {id: "input"}, [
+        h("label", {for: "number"}, "Number"),
         h("input", {oninput: (e) => actions.checkInput(e.target.value), id: "input-number", type: "text", name: "number", autofocus: ""}),
-        h("label", {for: "base"}, "SOME MOAR TEXT"),
+        h("label", {for: "base"}, "Base"),
         h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1"})
         ]
       ),
-      h("section", {},
-        state.outputTargets.map((i) => { return resultBox(state.number, state.base, i, actions.removeResultBox);})
+      h("section", {id: "results"},
+        h("ul", {}, state.outputTargets.map((i) => { return resultBox(state.number, state.base, i, actions.removeResultBox);}))
       ),
       h("button", {onclick: (e) => {actions.addResultBox()}}, "ADD")
     ]);

@@ -8,6 +8,52 @@ body {
 }
 
 header {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+}
+
+main {
+  margin: 20px;
+}
+
+#logo, #name{
+}
+
+#logo {
+  justify-self: end;
+}
+
+.hyperapp {
+  display: grid;
+
+}
+#input {
+  display: grid;
+  grid-template-areas: "inputLabelNumber inputLabelNumber"
+    "inputNumber inputNumber"
+    "inputBaseLabel inputBase";
+}
+
+section {
+  max-width: 350px;
+}
+
+#results ul {
+  list-style-type: none;
+  padding: 0;
+}
+.result-box {
+  display: flex;
+  height: 64px;
+  box-shadow: 0 3px 10px 0 #EAEAEA;
+  margin: 15px;
+  border: 1px solid #EAEAEA;
+  border-radius: 15px;
+}
+/*
+header {
   display: flex;
   height: 64px;
   flex-direction: row;
@@ -29,50 +75,22 @@ main {
 .logo img {
   height: 80%;
 }
-h2 {
-  font-weight: normal;
-}
 li {
   position: relative;
   overflow-y: hidden;
   overflow-x: auto;
 }
-li .divider-arrow,
-li .result-base,
-li .result-number {
-  transition: transform 400ms cubic-bezier(.14,.96,.71,1);
-}
-li:hover .divider-arrow,
-li:hover .result-base,
-li:hover .result-number {
-  transition: transform 400ms cubic-bezier(.14,.96,.71,1);
-  transition: transform 400ms cubic-bezier(.14,.96,.71,1.32);
-  transform: translateX(64px);
-}
-li:hover .divider-arrow {
-  transition-delay: 60ms;
-}
-li:hover .result-base {
-  transition-delay: 100ms;
-}
-li:hover .delete-button {
-  left: 0;
-  transition: left 400ms cubic-bezier(.14,.96,.71,1) 130ms;
-  transition: left 400ms cubic-bezier(.14,.96,.71,1.32) 130ms;
-}
-.divider-arrow {
-  flex-shrink: 0;
-}
-.result-base {
+
+.result-box-base {
   flex-shrink: 0;
   width: 64px;
   text-align: center;
   font-style: italic;
 }
-.result-number {
+.result-box-number {
   padding: 0 10px;
 }
-.delete-button {
+.result-box-delete-button {
   cursor: pointer;
   position: absolute;
   left: -64px;
@@ -112,7 +130,7 @@ ul {
   margin-bottom: 20px;
 }
 
-#base {
+#input-base {
   flex-basis: 100%;
 }
 .number-converter,
@@ -168,8 +186,7 @@ input[type="range"] {
 #add-base img {
   height: 48px;
 }
-#new-base {
-  border: none;
+#input-base {
   box-shadow: none;
   margin: 0;
 }
@@ -233,4 +250,4 @@ button:hover {
     max-height: 60vh;
     overflow-y: auto;
   }
-}
+}*/
