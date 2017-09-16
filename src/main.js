@@ -83,7 +83,7 @@ app({
       return {number: "", base: ""};
     },
     load() {
-      addEventListener("DOMContentLoaded", e => {
+      addEventListener("load", e => {
         var evt = new Event("input");
         var initValues = [1, 12, 123, 1234];
 
