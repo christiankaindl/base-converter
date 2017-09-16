@@ -27,6 +27,9 @@ main {
   grid-column-gap: 30px;
 }
 
+#input h1 {
+  font-weight: normal;
+}
 #input-number {
   height: 48px;
   display: block;
@@ -45,6 +48,9 @@ main {
   transform: translateX(16px);
   text-decoration: underline dashed;
 }
+#input-number.error {
+  text-decoration: underline red wavy
+}
 #input-base {
   width: calc(100% - 85px);  /* Strange fix for GTK issue */
   border: 0 solid transparent;
@@ -57,10 +63,7 @@ label[for="base"] {
 }
 #current-base {
   font-size: 1.8rem;
-  border: 1px solid lightgrey;
-  padding: 7px;
-  z-index: -1;
-  border-radius: 7px;
+  margin-right: 10px;
 }
 
 section {

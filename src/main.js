@@ -17,14 +17,15 @@ const emit = app({
   state: {
     number: 123,
     base: 10,
+    error: false,
     outputTargets: [2, 8, 16]
   },
   view: (state, actions) => {
     return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
-        h("h1", {}, "Convert numbers between numerical systems."),
+        h("h1", {}, "Convert numbers between numerical systems. Simply start by typing a number:"),
         h("label", {for: "number"}, "Number"),
-        h("input", {oninput: (e) => emit("input", e.target.value), placeholder: "Stay cool!", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
+        h("input", {oninput: (e) => emit("input", e.target.value), placeholder: "Stay cool!", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
         h("span", {}, [
           h("label", {for: "base"}, "Base"),
           h("br"),
@@ -41,8 +42,12 @@ const emit = app({
     ]);
   },
   actions: {
-    setInput(state, actions, number) {
-      return {number: number};
+    setInput(state, actions, {number, error = false}) {
+      //console.log(error);
+      return {
+        number: number,
+        error: error
+      };
     },
     setBase(state, actions, base) {
       return {
@@ -70,11 +75,15 @@ const emit = app({
     },
   },
   events: {
-    input(state, {setInput: setInput}, number) {
-      if (!Base.validateNumber(number, state.base))
-        return;
+    input(state, {setInput: setInput, invalidInput: invalidInput}, number) {
+      var error = !Base.validateNumber(number, state.base);
 
-      setInput(number);
+      console.log(error, " asdf");
+      var lel = [number, error];
+      setInput({
+        number: number,
+        error: error
+      });
     },
     base(state, {setBase: setBase}, base) {
       setBase(base);
@@ -87,7 +96,7 @@ const emit = app({
           if(i >= 4)
             return;
 
-          setInput(initValues[i]);
+          setInput({number: initValues[i]});
           setTimeout((i) => {setInitValue(i)}, 250, ++i);
         }
 
