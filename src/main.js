@@ -23,9 +23,14 @@ app({
   view: (state, actions) => {
     return h("div", {class: "hyperapp"}, [
       h("section", {id: "input"}, [
+        h("h1", {}, "Convert numbers between numerical systems."),
         h("label", {for: "number"}, "Number"),
         h("input", {oninput: (e) => actions.checkInput(e.target.value), id: "input-number", type: "text", name: "number", autofocus: ""}),
-        h("label", {for: "base"}, "Base"),
+        h("span", {}, [
+          h("label", {for: "base"}, "Base"),
+          h("br"),
+          h("span", {id: "current-base"}, "10")
+        ]),
         h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1"})
         ]
       ),

@@ -30,10 +30,30 @@ main {
 
 }
 #input {
-  display: grid;
-  grid-template-areas: "inputLabelNumber inputLabelNumber"
-    "inputNumber inputNumber"
-    "inputBaseLabel inputBase";
+
+}
+#input-number {
+  height: 64px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+#input-base {
+  width: calc(100% - 85px);  /* Strange fix for GTK issue */
+  border: 0 solid transparent;
+}
+label[for="base"] {
+  background-color: white;
+  z-index: 5000;
+  position: relative;
+  padding-right: 3px;
+}
+#current-base {
+  font-size: 1.8rem;
+  border: 1px solid lightgrey;
+  padding: 7px;
+  z-index: -1;
+  border-radius: 7px;
 }
 
 section {
@@ -46,11 +66,40 @@ section {
 }
 .result-box {
   display: flex;
+  align-items: center;
   height: 64px;
+  cursor: ns-resize;
   box-shadow: 0 3px 10px 0 #EAEAEA;
   margin: 15px;
   border: 1px solid #EAEAEA;
   border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+.result-box:hover .result-box-delete-button {
+  transform: translateX(0);
+  box-shadow: 0px 0 122px 0px grey;
+}
+.result-box-base {
+  width: 64px;
+  align-self: center;
+  text-align: center;
+}
+.result-box-number {
+  align-self: 64px;
+}
+.result-box-delete-button {
+  position: absolute;
+  height: 64px;
+  width: 64px;
+  cursor: pointer;
+  background-color: red;
+  background-image: url(assets/UI/delete.png);
+  border: none;
+  border-radius: 15px;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 300ms, box-shadow 300ms;
 }
 /*
 header {
