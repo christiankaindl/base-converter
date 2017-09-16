@@ -1,10 +1,9 @@
 'use strict';
 
 const {h, app} = hyperapp;
-console.log("TRADUBLBEBMD");
 
+// Component
 const resultBox = (number, base, targetBase, remove) => {
-  console.log("BLOOO");
   return h("li", {class: "result-box"},[
     h("div", {class: "result-box-base"}, targetBase),
     h("div", {class: "result-box-number"}, Base.convert(base, targetBase, number)),
@@ -12,7 +11,6 @@ const resultBox = (number, base, targetBase, remove) => {
   ]);
 
 }
-
 
 const emit = app({
   // IDEA: Use setter for base so when base state is changed number gets updated automagically
@@ -32,7 +30,7 @@ const emit = app({
           h("br"),
           h("span", {id: "current-base"}, state.base)
         ]),
-        h("input", {id: "input-base", value: 10, type: "range", name: "base", min: "2", max: "36", step: "1", oninput: (e) => emit("base", e.target.value)})
+        h("input", {id: "input-base", value: state.base, type: "range", name: "base", min: "2", max: "36", step: "1", oninput: (e) => emit("base", e.target.value)})
         ]
       ),
       h("section", {id: "results"},
@@ -40,7 +38,7 @@ const emit = app({
       ),
       h("button", {onclick: (e) => {actions.addResultBox()}}, "ADD")
     ]);
-    },
+  },
   actions: {
     setInput(state, actions, number) {
       return {number: number};
@@ -49,20 +47,6 @@ const emit = app({
       return {
         base: base,
         number: Base.convert(state.base, base, state.number)
-      };
-    },
-    checkInput(state, actions, input) {
-      if (Base.validateNumber(input, state.base))
-        return {number: input};
-
-      actions.giveErrorMessage(input);
-    },
-    inputBaseChange(state, actions, e) {
-      console.log(e.target.value);
-      console.log(state.number);
-      return {
-        base: e.target.value,
-        number: Base.convert(state.base, e.target.value, state.number)
       };
     },
     addResultBox(state) {
@@ -83,14 +67,6 @@ const emit = app({
         outputTargets: state.outputTargets
       };
     },
-    convertInput(state, actions, value){
-      console.log(value);
-        return {number: value};
-    },
-    giveErrorMessage(state, actions, input) {
-      console.log("WRONG!");
-    }
-
   },
   events: {
     input(state, {setInput: setInput}, number) {
@@ -102,16 +78,15 @@ const emit = app({
     base(state, {setBase: setBase}, base) {
       setBase(base);
     },
-    load(state, actions) {
+    load(state, {setInput: setInput}) {
       addEventListener("load", e => {
         var initValues = [1, 12, 123, 1234];
 
         function setInitValue(i = 0) {
-          console.log(i);
           if(i >= 4)
             return;
 
-          actions.setInput(initValues[i]);
+          setInput(initValues[i]);
           setTimeout((i) => {setInitValue(i)}, 250, ++i);
         }
 
