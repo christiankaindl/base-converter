@@ -20,6 +20,7 @@ const emit = app({
     error: false,
     outputTargets: [2, 8, 16]
   },
+
   view: (state, actions) => {
     return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
@@ -41,9 +42,9 @@ const emit = app({
       h("button", {onclick: (e) => {actions.addResultBox()}}, "ADD")
     ]);
   },
+
   actions: {
     setInput(state, actions, {number, error = false}) {
-      //console.log(error);
       return {
         number: number,
         error: error
@@ -56,13 +57,11 @@ const emit = app({
       };
     },
     addResultBox(state) {
-      console.log(state.outputTargets.unshift(5));
       return {
         outputTargets: state.outputTargets
       }
     },
     removeResultBox(state, actions, target) {
-      console.log(target.parentNode);
       var base = target.parentElement.getElementsByClassName('result-box-base')[0].textContent,
         position = state.outputTargets.indexOf(Number(base));
 
@@ -78,8 +77,6 @@ const emit = app({
     input(state, {setInput: setInput, invalidInput: invalidInput}, number) {
       var error = !Base.validateNumber(number, state.base);
 
-      console.log(error, " asdf");
-      var lel = [number, error];
       setInput({
         number: number,
         error: error
@@ -104,5 +101,6 @@ const emit = app({
       });
     }
   },
+
   root: document.getElementById("main")
 });
