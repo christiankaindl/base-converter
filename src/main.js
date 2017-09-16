@@ -20,11 +20,11 @@ const emit = app({
     outputTargets: [2, 8, 16]
   },
   view: (state, actions) => {
-    return h("div", {class: "hyperapp"}, [
+    return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
         h("h1", {}, "Convert numbers between numerical systems."),
         h("label", {for: "number"}, "Number"),
-        h("input", {oninput: (e) => emit("input", e.target.value), id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
+        h("input", {oninput: (e) => emit("input", e.target.value), placeholder: "Stay cool!", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
         h("span", {}, [
           h("label", {for: "base"}, "Base"),
           h("br"),
@@ -33,9 +33,10 @@ const emit = app({
         h("input", {id: "input-base", value: state.base, type: "range", name: "base", min: "2", max: "36", step: "1", oninput: (e) => emit("base", e.target.value)})
         ]
       ),
-      h("section", {id: "results"},
+      h("section", {id: "results"}, [
+        h("h1", {}, "Results"),
         h("ul", {}, state.outputTargets.map((i) => { return resultBox(state.number, state.base, i, actions.removeResultBox);}))
-      ),
+      ]),
       h("button", {onclick: (e) => {actions.addResultBox()}}, "ADD")
     ]);
   },

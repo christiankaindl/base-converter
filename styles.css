@@ -25,18 +25,30 @@ main {
   justify-self: end;
 }
 
-.hyperapp {
+#hyperapp {
   display: grid;
-
+  grid-column-gap: 30px;
 }
 #input {
 
 }
 #input-number {
-  height: 64px;
+  height: 48px;
   display: block;
-  width: 100%;
+  width: 60%;
   box-sizing: border-box;
+  border: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  color: black;
+  text-decoration: underline darkturquoise;
+  font-size: 2rem;
+  text-overflow: fade;
+  transition: transform 500ms cubic-bezier(.01,.99,0,.99)
+}
+#input-number:focus {
+  transform: translateX(16px);
+  text-decoration: underline dashed;
 }
 #input-base {
   width: calc(100% - 85px);  /* Strange fix for GTK issue */
@@ -58,6 +70,7 @@ label[for="base"] {
 
 section {
   max-width: 350px;
+  margin: 20px;
 }
 
 #results ul {
@@ -70,7 +83,7 @@ section {
   height: 64px;
   cursor: ns-resize;
   box-shadow: 0 3px 10px 0 #EAEAEA;
-  margin: 15px;
+  margin: 15px 0;
   border: 1px solid #EAEAEA;
   border-radius: 15px;
   position: relative;
@@ -93,13 +106,22 @@ section {
   height: 64px;
   width: 64px;
   cursor: pointer;
-  background-color: red;
+  background-color: #F44336;
   background-image: url(assets/UI/delete.png);
   border: none;
   border-radius: 15px;
   right: 0;
   transform: translateX(100%);
   transition: transform 300ms, box-shadow 300ms;
+}
+
+@media (min-width: 370px) {
+  #hyperapp {
+    grid-template-columns: 1fr 1fr;
+  }
+  #input {
+    justify-self: end;
+  }
 }
 /*
 header {
