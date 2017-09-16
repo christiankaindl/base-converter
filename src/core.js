@@ -24,13 +24,13 @@ var Base = {
 
       calcIntegerPart();
 
-      if (number.split(",")[1])
+      if (number.toString().split(",")[1])
         calcFractionPart();
 
       return sum.toString();
 
       function calcIntegerPart() {
-      	var numberIntDigits = number.split(",")[0].split("");
+      	var numberIntDigits = number.toString().split(",")[0].split("");
 
         for (let i in numberIntDigits)
 	        sum += Base.getDigitValue(numberIntDigits[i]) * Math.pow(base, numberIntDigits.length - 1 - i);

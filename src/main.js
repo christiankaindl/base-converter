@@ -14,7 +14,8 @@ const resultBox = (number, base, targetBase, remove) => {
 }
 
 
-app({
+const emit = app({
+  // IDEA: Use setter for base so when base state is changed number gets updated automagically
   state: {
     number: 123,
     base: 10,
@@ -25,13 +26,13 @@ app({
       h("section", {id: "input"}, [
         h("h1", {}, "Convert numbers between numerical systems."),
         h("label", {for: "number"}, "Number"),
-        h("input", {oninput: (e) => actions.checkInput(e.target.value), id: "input-number", type: "text", name: "number", autofocus: ""}),
+        h("input", {oninput: (e) => emit("input", e.target.value), id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
         h("span", {}, [
           h("label", {for: "base"}, "Base"),
           h("br"),
           h("span", {id: "current-base"}, state.base)
         ]),
-        h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1", oninput: actions.inputBaseChange})
+        h("input", {id: "input-base", value: 10, type: "range", name: "base", min: "2", max: "36", step: "1", oninput: (e) => emit("base", e.target.value)})
         ]
       ),
       h("section", {id: "results"},
@@ -41,6 +42,15 @@ app({
     ]);
     },
   actions: {
+    setInput(state, actions, number) {
+      return {number: number};
+    },
+    setBase(state, actions, base) {
+      return {
+        base: base,
+        number: Base.convert(state.base, base, state.number)
+      };
+    },
     checkInput(state, actions, input) {
       if (Base.validateNumber(input, state.base))
         return {number: input};
@@ -49,7 +59,11 @@ app({
     },
     inputBaseChange(state, actions, e) {
       console.log(e.target.value);
-      return {base: e.target.value};
+      console.log(state.number);
+      return {
+        base: e.target.value,
+        number: Base.convert(state.base, e.target.value, state.number)
+      };
     },
     addResultBox(state) {
       console.log(state.outputTargets.unshift(5));
@@ -79,25 +93,26 @@ app({
 
   },
   events: {
-    validInput() {
-      return {number: "", base: ""};
-    },
-    load() {
-      addEventListener("load", e => {
-        var evt = new Event("input");
-        var initValues = [1, 12, 123, 1234];
+    input(state, {setInput: setInput}, number) {
+      if (!Base.validateNumber(number, state.base))
+        return;
 
+      setInput(number);
+    },
+    base(state, {setBase: setBase}, base) {
+      setBase(base);
+    },
+    load(state, actions) {
+      addEventListener("load", e => {
+        var initValues = [1, 12, 123, 1234];
 
         function setInitValue(i = 0) {
           console.log(i);
           if(i >= 4)
             return;
 
-          document.getElementById("input-number").value = initValues[i];
-
-          document.getElementById("input-number").dispatchEvent(evt);
-          i++;
-          setTimeout((i) => {setInitValue(i)}, 250, i);
+          actions.setInput(initValues[i]);
+          setTimeout((i) => {setInitValue(i)}, 250, ++i);
         }
 
         setInitValue();
