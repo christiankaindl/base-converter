@@ -81,6 +81,13 @@ app({
   events: {
     validInput() {
       return {number: "", base: ""};
+    },
+    load() {
+      addEventListener("DOMContentLoaded", e => {
+        var evt = new Event("input");
+        document.getElementById("input-number").value = 12345;
+        document.getElementById("input-number").dispatchEvent(evt);
+      });
     }
   },
   root: document.getElementById("main")
