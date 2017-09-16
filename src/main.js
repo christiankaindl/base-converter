@@ -85,8 +85,22 @@ app({
     load() {
       addEventListener("DOMContentLoaded", e => {
         var evt = new Event("input");
-        document.getElementById("input-number").value = 12345;
-        document.getElementById("input-number").dispatchEvent(evt);
+        var initValues = [1, 12, 123, 1234];
+
+
+        function setInitValue(i = 0) {
+          console.log(i);
+          if(i >= 4)
+            return;
+
+          document.getElementById("input-number").value = initValues[i];
+
+          document.getElementById("input-number").dispatchEvent(evt);
+          i++;
+          setTimeout((i) => {setInitValue(i)}, 250, i);
+        }
+
+        setInitValue();
       });
     }
   },
