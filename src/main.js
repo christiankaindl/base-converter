@@ -29,9 +29,9 @@ app({
         h("span", {}, [
           h("label", {for: "base"}, "Base"),
           h("br"),
-          h("span", {id: "current-base"}, "10")
+          h("span", {id: "current-base"}, state.base)
         ]),
-        h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1"})
+        h("input", {id: "input-base", type: "range", name: "base", min: "2", max: "36", step: "1", oninput: actions.inputBaseChange})
         ]
       ),
       h("section", {id: "results"},
@@ -46,6 +46,10 @@ app({
         return {number: input};
 
       actions.giveErrorMessage(input);
+    },
+    inputBaseChange(state, actions, e) {
+      console.log(e.target.value);
+      return {base: e.target.value};
     },
     addResultBox(state) {
       console.log(state.outputTargets.unshift(5));
