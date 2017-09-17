@@ -3,7 +3,7 @@
 }
 
 html {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -12,14 +12,14 @@ html {
 body {
   margin: 0;
   padding: 0;
-  max-height: 650px;
 }
 
 header {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   grid-column-gap: 20px;
+  font-size: 0.9rem;
 }
 
 main {
@@ -28,6 +28,7 @@ main {
 
 #logo {
   justify-self: end;
+  margin-left: 10px;
 }
 
 #hyperapp {
@@ -35,9 +36,9 @@ main {
   grid-column-gap: 30px;
 }
 #description {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 1.3rem;
   text-align: center;
+  margin-top: 0;
 }
 
 #input h1 {
@@ -80,7 +81,7 @@ label[for="base"] {
 }
 
 section {
-  margin: 20px;
+  padding: 20px;
 }
 
 #add-base {
@@ -151,6 +152,7 @@ section {
 
 footer {
   text-align: center;
+  padding-bottom: 1rem;
 }
 footer a {
   text-decoration: none;
@@ -164,6 +166,10 @@ footer a:hover {
   #hyperapp {
     grid-template-columns: 1fr 1fr;
   }
+  header {
+    font-size: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
   #input {
     justify-self: end;
   }
@@ -174,5 +180,9 @@ footer a:hover {
   }
   section {
     max-width: 350px;
+  }
+  #results {
+    max-height: 400px;
+    overflow-y: auto;
   }
 }
