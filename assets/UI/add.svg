@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="54"
-   height="54"
-   viewBox="0 0 14.2875 14.2875"
+   width="48"
+   height="48"
+   viewBox="0 0 12.7 12.7"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.1 r"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
    sodipodi:docname="add.svg">
   <defs
      id="defs2" />
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6"
-     inkscape:cx="-11.428571"
-     inkscape:cy="17.142857"
+     inkscape:cx="-6.9642851"
+     inkscape:cy="8.9285713"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -35,10 +35,10 @@
      borderlayer="true"
      inkscape:showpageshadow="false"
      units="px"
-     inkscape:window-width="1600"
-     inkscape:window-height="838"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
      inkscape:window-x="0"
-     inkscape:window-y="34"
+     inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -56,18 +56,18 @@
      inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-282.71249)">
+     transform="translate(0,-284.29999)">
     <g
-       transform="translate(-457.19999,118.26874)"
-       id="g4671">
+       id="g822"
+       transform="translate(0.36505625,-0.36506)">
       <path
          inkscape:connector-curvature="0"
          id="path4665"
-         d="m 460.11041,171.58751 h 8.46667"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         d="M 2.0139689,291.01505 H 9.9559186"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.51734865;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 464.34375,175.82084 v -8.46667"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.51734865;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 5.9849484,294.98602 v -7.94194"
          id="path4667"
          inkscape:connector-curvature="0" />
     </g>

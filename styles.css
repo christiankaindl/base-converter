@@ -139,7 +139,9 @@ section {
   width: 64px;
   cursor: pointer;
   background-color: #F44336;
-  background-image: url(assets/UI/delete.png);
+  background-image: url(assets/UI/remove.svg);
+  background-position: 50%;
+  background-repeat: no-repeat;
   border: none;
   border-radius: 15px;
   right: 0;
