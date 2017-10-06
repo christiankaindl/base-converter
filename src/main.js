@@ -3,15 +3,16 @@
 const {h, app} = hyperapp;
 
 // Component
-const resultBox = (number, base, targetBase, remove) => {
+const resultBox = (number, base, targetBase) => {
   return h("li", {class: "result"},[
     h("span", {class: "result-number"}, Base.convert(base, targetBase, number)),
     h("sub", {class: "result-base", base: targetBase}, targetBase)
   ]);
 }
 
+// Component
 const baseDropdown = (state, actions, type) => {
-  return h("select", {onchange: (e) => {return type=="base" ? {outputTargets: state.outputTargets.unshift(e.target.value)} : {number: Base.convert(state.base, e.target.value, state.number)}}}, [
+  return h("select", {onchange: (e) => {console.log("TYPE2", type);actions.setBase({base: e.target.value, type: type})}}, [
     h("option", {value: 2}, "Base 2"),
     h("option", {value: 8}, "Base 8"),
     h("option", {value: 10, selected: (type!=="base" ? "selected" : "")}, "Base 10"),
@@ -25,8 +26,7 @@ const emit = app({
     number: "",
     base: 10,
     error: false,
-    outputTargets: [8],
-    newBase: ""
+    outputTargets: [16, 2]
   },
 
   view: (state, actions) => {
@@ -37,12 +37,12 @@ const emit = app({
       ),
       h("div", {id: "from-to"}, [
         h("span", {}, "from"),
-        baseDropdown(state, actions),
+        baseDropdown(state, actions, "number"),
         h("span", {}, "to"),
         baseDropdown(state, actions, "base")
       ]),
       h("section", {id: "results"}, [
-        h("ul", {}, state.outputTargets.map((i) => { return resultBox(state.number, state.base, i, actions.removeResultBox);}))
+        h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
       ])
     ]);
   },
@@ -54,50 +54,33 @@ const emit = app({
         error: error
       };
     },
-    setBase(state, actions, base) {
-      return {
-        base: base,
-        number: Base.convert(state.base, base, state.number)
+    setBase(state, actions, {base, type}) {
+      console.log("TYPE:", type);
+      console.log("BASE:", base);
+      return type=="base" ? (() => {
+        state.outputTargets.unshift(Number(base));
+        return {
+          outputTargets: state.outputTargets
+        }
+      })() : {
+        number: Base.convert(state.base, base, state.number),
+        base: base
       };
-    },
-    addResultBox(state, actions, e) {
-      var inputField = e.target.parentElement.getElementsByTagName("input")[0];
 
-      state.outputTargets.push(inputField.value);
-      return {
-        outputTargets: state.outputTargets
-      }
-    },
-    removeResultBox(state, actions, target) {
-      var base = target.parentElement.getElementsByClassName('result-box-base')[0].getAttribute("base"),
-        position = state.outputTargets.indexOf(Number(base));
-
-      // splice() modyfies the array directly and returns the deleted element
-      state.outputTargets.splice(position, 1);
-
-      return {
-        outputTargets: state.outputTargets
-      };
-    },
-    addBase() {
-      console.log("blub");
-      return {
-        addBaseDialog: true
-      };
     }
   },
 
   events: {
     input(state, {setInput: setInput, invalidInput: invalidInput}, number) {
-      console.log(number);
       var error = !Base.validateNumber(number, state.base);
       setInput({
         number: number,
         error: error
       });
     },
-    base(state, {setBase: setBase}, base) {
-      setBase(base);
+    base(state, {setBase: setBase}, type, base) {
+
+      setBase(base, type);
     },
   },
 

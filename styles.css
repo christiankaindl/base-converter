@@ -12,6 +12,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  color: #424242;
 }
 
 header {
@@ -20,6 +21,12 @@ header {
   grid-template-columns: auto auto;
   grid-column-gap: 20px;
   font-size: 0.9rem;
+}
+header p {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 0;
+  grid-column: 1 / 3;
 }
 
 main {
@@ -34,17 +41,16 @@ main * {
   margin-left: 10px;
 }
 
-#hyperapp {
-
-}
 #from-to {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 2rem 1rem;
 }
 #from-to span {
   margin: 0 10px;
 }
+
 .result:first-child {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -52,24 +58,14 @@ main * {
 .result:not(:first-child) {
   color: #424242;
 }
-header p {
-  font-size: 1.3rem;
-  text-align: center;
-  margin-top: 0;
-  grid-column: 1 / 3;
-}
 
-#input h1 {
-  font-weight: normal;
-}
 #input-number {
-  display: inline;
   font-size: 2rem;
   font-weight: normal;
-  color: black;
+  color: grey;
   border: none;
   border: 1px solid transparent;
-  border-radius: 15px;
+  border-radius: 10px;
   text-overflow: fade;
 }
 #input-number:focus {
@@ -78,89 +74,10 @@ header p {
 #input-number.error {
   text-decoration: underline red wavy;
 }
-#input-base {
-  width: calc(100% - 85px);  /* Strange fix for GTK issue */
-  border: 0 solid transparent;
-}
-label[for="base"] {
-  background-color: white;
-  z-index: 5000;
-  position: relative;
-  padding-right: 3px;
-}
-#current-base {
-  font-size: 1.8rem;
-  margin-right: 10px;
-}
 
-section {
-  padding-bottom: 20px;
-}
-
-#add-base {
-  display: flex;
-}
-#add-base button {
-  align-self: center;
-  color: #424242;
-  background-color: transparent;
-  border: none;
-  font-weight: normal;
-  cursor: pointer;
-}
-#add-base input {
-  width: 40%;
-  height: 32px;
-  border: none;
-  border-radius: 15px;
-  padding: 4px 7px;
-  border: 1px solid lightgrey;
-}
-#add-base .hidden {
-  display: none;
-}
 #results ul {
   list-style-type: none;
   padding: 0;
-}
-.result-box {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  cursor: ns-resize;
-  box-shadow: 0 3px 10px 0 #EAEAEA;
-  margin: 15px 0;
-  border: 1px solid #EAEAEA;
-  border-radius: 15px;
-  position: relative;
-  overflow: hidden;
-}
-.result-box:hover .result-box-delete-button {
-  transform: translateX(0);
-  box-shadow: 0px 0 122px 0px grey;
-}
-.result-box-base {
-  width: 64px;
-  align-self: center;
-  text-align: center;
-}
-.result-box-number {
-  align-self: 64px;
-}
-.result-box-delete-button {
-  position: absolute;
-  height: 64px;
-  width: 64px;
-  cursor: pointer;
-  background-color: #F44336;
-  background-image: url(assets/UI/remove.svg);
-  background-position: 50%;
-  background-repeat: no-repeat;
-  border: none;
-  border-radius: 15px;
-  right: 0;
-  transform: translateX(100%);
-  transition: transform 300ms, box-shadow 300ms;
 }
 
 footer {
@@ -168,6 +85,7 @@ footer {
   padding-bottom: 1rem;
 }
 footer a {
+  transition: color 100ms;
   text-decoration: none;
   color: grey;
 }
@@ -176,24 +94,12 @@ footer a:hover {
 }
 
 @media (min-width: 600px) {
-  #hyperapp {
-
-  }
   header {
     font-size: 1rem;
-  }
-  #input {
-    justify-self: end;
   }
   #description {
     grid-column: 1 / 3;
     justify-self: center;
     max-width: 500px;
-  }
-  section {
-
-  }
-  #results {
-    overflow-y: auto;
   }
 }
