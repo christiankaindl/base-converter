@@ -4,6 +4,15 @@ var Base = {
 	convert (from, targetBase, number) {
 		var isComma = isComma || false;
 		var results = [];
+		// Convert targetBase to array if it is not yet
+		targetBase = Array.isArray(targetBase) ? targetBase : [targetBase];
+
+		if (number === "" || number === "0") {
+			for (let i in targetBase) {
+				results[i] = "0";
+			}
+			return results;
+		}
 
 		if (!Base.validateNumber(number, from))
       return false;
@@ -11,8 +20,6 @@ var Base = {
 	  if (from !== 10)
 	    number = toBaseTen(number, from);
 
-    // Convert targetBase to array if it is not yet
-    targetBase = Array.isArray(targetBase) ? targetBase : [targetBase];
 	  for (let i in targetBase)
 	    results[i] = fromBaseTen(number, targetBase[i]);
 
