@@ -1,5 +1,5 @@
-# Base converter.
+Simple tool to convert numbers between numeral bases.
 
-CC0 License.
+Built with hyperapp!
 
-Simple tool to convert numbers between numeral bases. Allows comma values to 8 digit accuracy and has no limit for number sizes.
+Free to use for everyone, using CC0 license.

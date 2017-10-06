@@ -6,6 +6,7 @@ var Base = {
 		var results = [];
 		// Convert targetBase to array if it is not yet
 		targetBase = Array.isArray(targetBase) ? targetBase : [targetBase];
+		console.log(number);
 
 		if (number === "" || number === "0") {
 			for (let i in targetBase) {
