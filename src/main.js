@@ -13,9 +13,9 @@ const resultBox = (number, base, targetBase, remove) => {
 const baseDropdown = (state, actions, type) => {
   return h("select", {onchange: (e) => {return type=="base" ? {outputTargets: state.outputTargets.unshift(e.target.value)} : {number: Base.convert(state.base, e.target.value, state.number)}}}, [
     h("option", {value: 2}, "Base 2"),
-    h("option", {value: 8, selected: (type=="base" ? "selected" : "")}, "Base 8"),
+    h("option", {value: 8}, "Base 8"),
     h("option", {value: 10, selected: (type!=="base" ? "selected" : "")}, "Base 10"),
-    h("option", {value: 16}, "Base 16")
+    h("option", {value: 16, selected: (type=="base" ? "selected" : "")}, "Base 16")
   ]);
 }
 
@@ -36,8 +36,9 @@ const emit = app({
         h("sub", {}, state.base)]
       ),
       h("div", {id: "from-to"}, [
+        h("span", {}, "from"),
         baseDropdown(state, actions),
-        h("span", {}, "TO"),
+        h("span", {}, "to"),
         baseDropdown(state, actions, "base")
       ]),
       h("section", {id: "results"}, [

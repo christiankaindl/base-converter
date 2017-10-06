@@ -1,6 +1,5 @@
 * {
   font-family: sans-serif;
-  text-align: center;
 }
 
 html {
@@ -25,6 +24,9 @@ header {
 
 main {
   margin: 20px;
+}
+main * {
+  text-align: center;
 }
 
 #logo {
