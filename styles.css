@@ -56,13 +56,26 @@ main * {
 .result:not(:first-child) {
   color: #424242;
 }
-
-#input-number {
+[contenteditable=true] {
+  cursor: text;
+}
+[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  color:gray;
+}
+[contenteditable=true] br{
+  display:none;
+}
+#input {
   font-size: 2rem;
+}
+#input span {
+  outline: none;
+  caret-color: #2196F3;
+}
+#input-number {
   font-weight: normal;
   color: grey;
-  border: none;
-  border: 1px solid transparent;
   border-radius: 10px;
   text-overflow: fade;
 }

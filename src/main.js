@@ -32,7 +32,7 @@ const emit = app({
   view: (state, actions) => {
     return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
-        h("input", {oninput: (e) => emit("input", e.target.value), placeholder: "Type a number", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
+        h("span", {contenteditable: "true", oninput: (e) => emit("input", e.target.textContent), placeholder: "Type a number", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
         h("sub", {}, state.base)]
       ),
       h("div", {id: "from-to"}, [
@@ -77,11 +77,7 @@ const emit = app({
         number: number,
         error: error
       });
-    },
-    base(state, {setBase: setBase}, type, base) {
-
-      setBase(base, type);
-    },
+    }
   },
 
   root: document.getElementById("main")
