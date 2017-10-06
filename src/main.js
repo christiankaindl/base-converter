@@ -23,10 +23,10 @@ const baseDropdown = (state, actions, type) => {
 const emit = app({
   // IDEA: Use setter for base so when base state is changed number gets updated automagically
   state: {
-    number: "",
+    number: 42,
     base: 10,
     error: false,
-    outputTargets: [16, 2]
+    outputTargets: [16]
   },
 
   view: (state, actions) => {

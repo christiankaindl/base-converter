@@ -16,7 +16,7 @@ body {
 }
 
 header {
-
+  font-size: 0.85rem;
 }
 header div {
   display: flex;
@@ -33,22 +33,17 @@ header p {
 }
 
 main {
-  margin: 50px;
+  margin: 60px 20px;
 }
 main * {
   text-align: center;
-}
-
-#logo {
-  justify-self: end;
-  margin-left: 10px;
 }
 
 #from-to {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem 1rem;
+  margin: 1rem;
 }
 #from-to span {
   margin: 0 10px;
@@ -56,7 +51,7 @@ main * {
 
 .result:first-child {
   font-size: 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .result:not(:first-child) {
   color: #424242;
@@ -72,7 +67,8 @@ main * {
   text-overflow: fade;
 }
 #input-number:focus {
-  border: 1px solid lightgrey;
+  text-decoration: underline;
+  color: #424242;
 }
 #input-number.error {
   text-decoration: underline red wavy;
