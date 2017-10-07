@@ -63,7 +63,7 @@ const emit = app({
   view: (state, actions) => {
     return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
-        h("span", {contenteditable: "true", oninput: (e) => emit("input", e.target.textContent), placeholder: "Type a number", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "", value: state.number}),
+        h("span", {contenteditable: "true", oninput: (e) => emit("input", e.target.textContent), placeholder: "You are awesome!", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "autofocus", value: state.number}, state.number),
         h("sub", {}, state.base)]
       ),
       h("div", {id: "from-to"}, [
@@ -73,6 +73,7 @@ const emit = app({
         baseDropdown(state, actions, "base")
       ]),
       h("section", {id: "results"}, [
+        h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " reults in"),
         h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
       ])
     ]);

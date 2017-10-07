@@ -33,7 +33,7 @@ header p {
 }
 
 main {
-  margin: 60px 20px;
+  margin: 60px 0;
 }
 main * {
   text-align: center;
@@ -43,10 +43,21 @@ main * {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1rem;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  box-shadow: 0px 2px 5px lightgrey;
+  height: 48px;
+  width: 90%;
+  margin: 2rem auto;
 }
 #from-to span {
   margin: 0 10px;
+}
+#from-to span:first-child {
+  margin-left: 0;
+}
+#from-to select {
+  height: 36px;
 }
 
 .result:first-child {
@@ -80,7 +91,6 @@ main * {
   text-overflow: fade;
 }
 #input-number:focus {
-  text-decoration: underline;
   color: #424242;
 }
 #input-number.error {
@@ -108,5 +118,8 @@ footer a:hover {
 @media (min-width: 600px) {
   header {
     font-size: 1rem;
+  }
+  #from-to {
+    width: 80%;
   }
 }
