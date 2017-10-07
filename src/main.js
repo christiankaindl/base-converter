@@ -4,10 +4,10 @@ const {h, app} = hyperapp;
 
 // Component
 const resultBox = (number, base, targetBase) => {
-  return h("li", {class: "result"},[
+  return h("li", {class: "result"}, h("output", {for: "input-number"}, [
     h("span", {class: "result-number"}, Base.convert(base, targetBase, number)),
     h("sub", {class: "result-base", base: targetBase}, targetBase)
-  ]);
+  ]));
 }
 
 // Component
@@ -78,7 +78,7 @@ app({
         h("span", {}, "to"),
         baseDropdown(state, actions, "to")
       ]),
-      h("output", {id: "results"}, [
+      h("section", {id: "results"}, [
         h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " results in"),
         h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
       ])
