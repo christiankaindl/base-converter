@@ -12,7 +12,7 @@ const resultBox = (number, base, targetBase) => {
 
 // Component
 const baseDropdown = (state, actions, type) => {
-  return h("select", {onchange: (e) => {actions.updateBase({newBase: e.target.value, type: type})}}, [
+  return h("select", {onchange: (e) => {actions.updateBase({newBase: Number(e.target.value), type: type})}}, [
     h("option", {value: 2}, "Base 2"),
     h("option", {value: 3}, "Base 3"),
     h("option", {value: 4}, "Base 4"),
@@ -94,7 +94,11 @@ app({
     },
     updateBase(state, actions, {newBase, type}) {
       if (type === "to") {
+        let index = state.outputTargets.indexOf(newBase);
+        if (index != -1) state.outputTargets.splice(index, 1);
+
         state.outputTargets.unshift(newBase);
+        
         return {
           outputTargets: state.outputTargets
         };
