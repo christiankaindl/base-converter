@@ -87,8 +87,6 @@ const emit = app({
       };
     },
     setBase(state, actions, {base, type}) {
-      console.log("TYPE:", type);
-      console.log("BASE:", base);
       return type=="base" ? (() => {
         state.outputTargets.unshift(Number(base));
         return {
