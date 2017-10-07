@@ -6,7 +6,6 @@ var Base = {
 		var results = [];
 		// Convert targetBase to array if it is not yet
 		targetBase = Array.isArray(targetBase) ? targetBase : [targetBase];
-		console.log(number);
 
 		if (number === "" || number === "0") {
 			for (let i in targetBase) {
@@ -102,8 +101,6 @@ var Base = {
 	 * E.g. 14 returns 'E'; 8 returns '8'
 	 */
 	getNumberCharacter (number) {
-		console.log("NUMBER:", number);
-		console.log("GET NUMBER:", Base.digits[number]);
     return Base.digits[number];
 	},
 
