@@ -102,6 +102,8 @@ var Base = {
 	 * E.g. 14 returns 'E'; 8 returns '8'
 	 */
 	getNumberCharacter (number) {
+		console.log("NUMBER:", number);
+		console.log("GET NUMBER:", Base.digits[number]);
     return Base.digits[number];
 	},
 
@@ -115,7 +117,7 @@ var Base = {
 	    return false;
 
     // Return true if number is 0 so the call-site can make safe boolean checks
-    return (digitValue === 0) ? true : digitValue;
+    return digitValue;
 	},
 
   /** Takes a number and validates it
@@ -135,7 +137,7 @@ var Base = {
 	    if (digits[i] === "," && isComma === true)
 	      return false;
 
-      if (!digitValue || digitValue >= base)
+      if (digitValue === -1 || digitValue >= base)
 	      return false;
 		}
 
