@@ -78,8 +78,8 @@ app({
         h("span", {}, "to"),
         baseDropdown(state, actions, "to")
       ]),
-      h("section", {id: "results"}, [
-        h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " reults in"),
+      h("output", {id: "results"}, [
+        h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " results in"),
         h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
       ])
     ]);
@@ -98,7 +98,7 @@ app({
         if (index != -1) state.outputTargets.splice(index, 1);
 
         state.outputTargets.unshift(newBase);
-        
+
         return {
           outputTargets: state.outputTargets
         };
