@@ -51,7 +51,7 @@ const baseDropdown = (state, actions, type) => {
   ]);
 }
 
-const emit = app({
+app({
   // IDEA: Use setter for base so when base state is changed number gets updated automagically
   state: {
     number: 42,
@@ -63,7 +63,14 @@ const emit = app({
   view: (state, actions) => {
     return h("div", {id: "hyperapp"}, [
       h("section", {id: "input"}, [
-        h("span", {contenteditable: "true", oninput: (e) => emit("input", e.target.textContent), placeholder: "You are awesome!", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "autofocus", value: state.number}, state.number),
+        h("span", {contenteditable: "true", oninput: (e) => {
+          var number = e.target.textContent;
+          var error = !Base.validateNumber(number, state.base);
+          actions.setInput({
+            number: number || 0,
+            error: error
+          });
+        }, placeholder: "You are awesome!", class: state.error?"error":"", id: "input-number", type: "text", name: "number", autofocus: "autofocus", value: state.number}, state.number),
         h("sub", {}, state.base)]
       ),
       h("div", {id: "from-to"}, [
@@ -97,16 +104,6 @@ const emit = app({
         base: base
       };
 
-    }
-  },
-
-  events: {
-    input(state, {setInput: setInput, invalidInput: invalidInput}, number) {
-      var error = !Base.validateNumber(number, state.base);
-      setInput({
-        number: number,
-        error: error
-      });
     }
   },
 
