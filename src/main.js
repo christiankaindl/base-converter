@@ -117,3 +117,19 @@ const view = (state, actions) => {
 };
 
 const main = app(state, actions, view, document.getElementById("main"))
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service_worker.js')
+  .then((worker) => {
+    if(worker.installing) {
+          console.log('Service worker installing');
+        } else if(worker.waiting) {
+          console.log('Service worker installed');
+        } else if(worker.active) {
+          console.log('Service worker active');
+        }
+
+  }).catch((err) => {
+    console.error(err);
+  })
+}
