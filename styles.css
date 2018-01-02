@@ -43,7 +43,7 @@ main * {
 [contenteditable=true] {
   cursor: text;
 }
-[contenteditable=true]:empty:before {
+[contenteditable=true]:empty::before {
   content: attr(placeholder);
   color:gray;
 }
