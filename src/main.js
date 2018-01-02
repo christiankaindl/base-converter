@@ -3,7 +3,9 @@
 const {h, app} = hyperapp;
 
 // Component
-const resultBox = (number, base, targetBase) => {
+const resultBox = (number = 0, base, targetBase) => {
+  // console.log(number);
+  // console.log(Base.convert(base, targetBase, number));
   return h("li", {class: "result"}, h("output", {for: "input-number"}, [
     h("span", {class: "result-number"}, Base.convert(base, targetBase, number)),
     h("sub", {class: "result-base", base: targetBase}, targetBase)
@@ -51,69 +53,67 @@ const baseDropdown = (state, actions, type) => {
   ]);
 }
 
-app({
-  // IDEA: Use setter for base so when base state is changed number gets updated automagically
-  state: {
-    number: 42,
-    base: 10,
-    error: false,
-    outputTargets: [16]
-  },
+const state = {
+  number: 42,
+  base: 10,
+  error: false,
+  outputTargets: [16]
+};
 
-  view: (state, actions) => {
-    return h("div", {id: "hyperapp"}, [
-      h("section", {id: "input"}, [
-        h("span", {
-          contenteditable: "true",
-          oninput: (e) => actions.input(e.target.textContent),
-          placeholder: "You are awesome!",
-          class: state.error?"error":"",
-          id: "input-number",
-          autofocus: "autofocus"}, state.number),
-        h("sub", {}, state.base)]
-      ),
-      h("div", {id: "from-to"}, [
-        h("span", {}, "from"),
-        baseDropdown(state, actions, "from"),
-        h("span", {}, "to"),
-        baseDropdown(state, actions, "to")
-      ]),
-      h("section", {id: "results"}, [
-        h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " results in"),
-        h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
-      ])
-    ]);
+const actions = {
+  input: (number = 0) => state => {
+    console.log(number);
+    return {
+      number: number,
+      error: !Base.validateNumber(number, state.base)
+    };
   },
+  updateBase: ({newBase, type}) => state => {
+    if (type === "to") {
+      let index = state.outputTargets.indexOf(newBase);
+      if (index != -1) state.outputTargets.splice(index, 1);
 
-  actions: {
-    input(state, actions, number) {
+      state.outputTargets.unshift(newBase);
+
       return {
-        number: number || 0,
-        error: !Base.validateNumber(number, state.base)
+        outputTargets: state.outputTargets
       };
-    },
-    updateBase(state, actions, {newBase, type}) {
-      if (type === "to") {
-        let index = state.outputTargets.indexOf(newBase);
-        if (index != -1) state.outputTargets.splice(index, 1);
-
-        state.outputTargets.unshift(newBase);
-
-        return {
-          outputTargets: state.outputTargets
-        };
-      }
-
-      else if (type === "from") {
-        return {
-          number: Base.convert(state.base, newBase, state.number),
-          base: newBase
-        };
-      }
-
-      console.error("Missig base type. It can be one of the following: 'to' or 'from'");
     }
-  },
 
-  root: document.getElementById("main")
-});
+    else if (type === "from") {
+      return {
+        number: Base.convert(state.base, newBase, state.number),
+        base: newBase
+      };
+    }
+
+    console.error("Missig base type. It can be one of the following: 'to' or 'from'");
+  }
+};
+
+const view = (state, actions) => {
+  return h("div", {id: "hyperapp"}, [
+    h("section", {id: "input"}, [
+      h("span", {
+        contenteditable: "true",
+        oninput: (e) => actions.input(e.target.textContent),
+        placeholder: "You are awesome!",
+        class: state.error?"error":"",
+        id: "input-number",
+        autofocus: "autofocus"}, state.number),
+      h("sub", {}, state.base)]
+    ),
+    h("div", {id: "from-to"}, [
+      h("span", {}, "from"),
+      baseDropdown(state, actions, "from"),
+      h("span", {}, "to"),
+      baseDropdown(state, actions, "to")
+    ]),
+    h("section", {id: "results"}, [
+      h("span", {}, h("b", {}, state.number, h("sub", {}, state.base)), " results in"),
+      h("ul", {}, state.outputTargets.map((i) => {return resultBox(state.number, state.base, i);}))
+    ])
+  ]);
+};
+
+const main = app(state, actions, view, document.getElementById("main"))
