@@ -61,8 +61,10 @@ const state = {
 };
 
 const actions = {
-  input: (number = 0) => state => {
-    console.log(number);
+  input: number => state => {
+    if (number === "")
+      number = 42;
+
     return {
       number: number,
       error: !Base.validateNumber(number, state.base)
@@ -97,10 +99,10 @@ const view = (state, actions) => {
       h("span", {
         contenteditable: "true",
         oninput: (e) => actions.input(e.target.textContent),
-        placeholder: "You are awesome!",
+        placeholder: "42",
         class: state.error?"error":"",
         id: "input-number",
-        autofocus: "autofocus"}, state.number),
+        autofocus: "autofocus"}),
       h("sub", {}, state.base)]
     ),
     h("div", {id: "from-to"}, [
