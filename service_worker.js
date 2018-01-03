@@ -16,6 +16,9 @@ self.addEventListener('install', function (event) {
         '/src/assets/brand/favicon.png'
       ]);
     })
+    .catch(function(error) {
+      console.error(`Caching failed with ${error}`);
+    })
   );
 });
 
