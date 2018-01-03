@@ -5,7 +5,7 @@ self.addEventListener("install", function(event) {
       .open("v1")
       .then(function(cache) {
         return cache.addAll([
-          "/",
+          "/base-converter/",
           "/index.html",
           "/manifest.json",
           "/favicon.png",
