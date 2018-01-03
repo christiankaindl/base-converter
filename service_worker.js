@@ -5,11 +5,15 @@ self.addEventListener('install', function (event) {
       return cache.addAll([
         '/',
         '/index.html',
+        '/manifest.json',
+        '/favicon.png',
         '/src/',
         '/src/core.js',
         '/src/main.js',
         '/src/styles.css',
         '/src/assets/brand/BaseConverterLogo.svg',
+        '/src/assets/brand/favicon_192.png',
+        '/src/assets/brand/favicon_512.png',
         '/src/assets/brand/favicon.png'
       ]);
     })
@@ -22,6 +26,9 @@ self.addEventListener('fetch', function(event) {
     caches.match(event.request)
     .then(function(response) {
       return response || fetch(event.request);
+    })
+    .catch(function(error) {
+      console.error(`Could not fetch ressource with ${error}`);
     })
   );
 });
