@@ -157,7 +157,7 @@ const main = app(state, actions, view, document.getElementById("main"));
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
-    .register("service_worker.js", {scope: '/base-converter/'})
+    .register("/base-converter/service_worker.js", {scope: '/base-converter/'})
     .then(worker => {
       if (worker.installing) {
         console.log("Service worker installing");
