@@ -6,16 +6,16 @@ self.addEventListener("install", function(event) {
       .then(function addCaches(cache) {
         return cache.addAll([
           "/base-converter/",
-          "/index.html",
-          "/manifest.json",
-          "/favicon.png",
-          "/src/core.js",
-          "/src/main.js",
-          "/src/styles.css",
-          "/src/assets/brand/BaseConverterLogo.svg",
-          "/src/assets/brand/favicon_192.png",
-          "/src/assets/brand/favicon_512.png",
-          "/src/assets/brand/favicon.png",
+          "/base-converter/index.html",
+          "/base-converter/manifest.json",
+          "/base-converter/favicon.png",
+          "/base-converter/src/core.js",
+          "/base-converter/src/main.js",
+          "/base-converter/src/styles.css",
+          "/base-converter/src/assets/brand/BaseConverterLogo.svg",
+          "/base-converter/src/assets/brand/favicon_192.png",
+          "/base-converter/src/assets/brand/favicon_512.png",
+          "/base-converter/src/assets/brand/favicon.png",
           "https://unpkg.com/hyperapp@1.0.1/dist/hyperapp.js"
         ]);
       })
