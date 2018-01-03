@@ -3,7 +3,7 @@ self.addEventListener("install", function(event) {
   event.waitUntil(
     caches
       .open("v1")
-      .then(function(cache) {
+      .then(function addCaches(cache) {
         return cache.addAll([
           "/base-converter/",
           "/index.html",
@@ -30,11 +30,11 @@ self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches
       .match(event.request)
-      .then(function(response) {
+      .then(function fetchResponse(response) {
         console.info(`Match response is ${response}`);
         return response || fetch(event.request);
       })
-      .catch(function(error) {
+      .catch(function fetchError(error) {
         console.error(`Could not fetch ressource with ${error}`);
 
         return caches.match('/index.html');
