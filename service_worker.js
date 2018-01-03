@@ -31,10 +31,13 @@ self.addEventListener("fetch", function(event) {
     caches
       .match(event.request)
       .then(function(response) {
+        console.info(`Match response is ${response}`);
         return response || fetch(event.request);
       })
       .catch(function(error) {
         console.error(`Could not fetch ressource with ${error}`);
+
+        return caches.match('/index.html');
       })
   );
 });
