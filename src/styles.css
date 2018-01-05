@@ -110,10 +110,10 @@ footer {
 footer a {
   transition: color 100ms;
   text-decoration: none;
-  color: grey;
+  color: #212121;
 }
 footer a:hover {
-  color: lightgrey;
+  color: grey;
 }
 
 @media (min-width: 600px) {
