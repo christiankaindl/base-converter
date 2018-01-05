@@ -2,18 +2,20 @@
   "name": "Base Converter",
   "short_name": "Converter",
   "description": "Easily convert between numerical base systems.",
-  "background_color": "#2196F3",
-  "theme_color": "#0068bf",
   "icons": [
-    {
-      "sizes": "192x192",
-      "src": "/src/assets/brand/favicon_192.png"
-    },
-    {
-      "sizes": "512x512",
-      "src": "/src/assets/brand/favicon_512.png"
-    }
+      {
+          "src": "/android-chrome-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "/android-chrome-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
   ],
+  "theme_color": "#0068bf",
+  "background_color": "#0068bf",
   "display": "standalone",
   "orientation": "any"
 }
