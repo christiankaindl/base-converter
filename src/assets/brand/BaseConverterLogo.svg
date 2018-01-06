@@ -29,7 +29,7 @@
      inkscape:cx="49.136309"
      inkscape:cy="22.598184"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g859"
      showgrid="true"
      units="px"
      inkscape:pagecheckerboard="true"
@@ -83,17 +83,15 @@
          width="12.7"
          id="rect853"
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.28222221;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         id="text857"
-         y="136.55815"
-         x="90.884262"
+      <g
+         aria-label="n"
          style="font-style:italic;font-variant:normal;font-weight:600;font-stretch:normal;font-size:16.16604233px;line-height:1.25;font-family:'Zilla Slab';-inkscape-font-specification:'Zilla Slab Semi-Bold Italic';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#0068bf;fill-opacity:1;stroke:none;stroke-width:1.21245325"
-         xml:space="preserve"><tspan
+         id="text857">
+        <path
+           d="m 83.218274,129.2996 -0.452649,0.38798 -0.113162,0.9538 h 1.115457 l -0.727472,5.91677 h 1.648936 l 0.517314,-4.17084 v 0.0162 c 0.129328,-1.05079 0.695139,-1.90759 1.762098,-1.90759 0.889132,0 1.30945,0.51731 1.147789,1.89142 l -0.517313,4.17084 h 2.295578 l 0.436483,-0.35565 0.129328,-0.96996 h -1.050792 l 0.420317,-3.4757 c 0.226324,-1.79443 -0.77597,-2.60274 -2.101586,-2.60274 -1.115457,0 -1.875261,0.61431 -2.376408,1.55194 l -0.0485,-1.40644 z"
            style="font-style:italic;font-variant:normal;font-weight:600;font-stretch:normal;font-family:'Zilla Slab';-inkscape-font-specification:'Zilla Slab Semi-Bold Italic';fill:#0068bf;fill-opacity:1;stroke-width:1.21245325"
-           y="136.55815"
-           x="90.884262"
-           id="tspan855"
-           sodipodi:role="line">n</tspan></text>
+           id="path861" />
+      </g>
     </g>
   </g>
 </svg>
